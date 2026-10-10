@@ -1,0 +1,42 @@
+---
+import BaseLayout from '@/engine/layouts/BaseLayout.astro';
+const title = 'Privacy Policy';
+const description = 'How GameAtlas collects, uses and protects visitor information.';
+const updated = 'October 9, 2026';
+---
+
+<BaseLayout title={`${title} | GameAtlas`} description={description} path="/privacy/">
+  <div class="container section legal">
+    <h1>Privacy Policy</h1>
+    <p class="muted">Last updated: {updated}</p>
+    <p>This Privacy Policy explains how GameAtlas ("we", "us") handles information when you visit this website. This is a template policy and should be reviewed by a qualified professional before relying on it.</p>
+
+    <h2>1. Information we collect</h2>
+    <p>We do not require you to create an account. We may collect limited technical information automatically, such as browser type, device type, pages visited and referring pages, through analytics services if enabled.</p>
+
+    <h2>2. Cookies</h2>
+    <p>We and our service providers may use cookies and similar technologies to understand site usage and, where enabled, to serve and measure advertising. You can control cookies through your browser settings. See our <a href="/cookie-policy/">Cookie Policy</a>.</p>
+
+    <h2>3. How we use information</h2>
+    <ul>
+      <li>To operate and improve the website and its content.</li>
+      <li>To understand aggregate usage trends.</li>
+      <li>To display and measure advertising where configured.</li>
+    </ul>
+
+    <h2>4. Advertising</h2>
+    <p>Third-party advertising partners may use cookies to serve relevant ads and measure their performance. We do not share personally identifying information with advertisers. Advertising can be managed through industry opt-out tools and your device settings.</p>
+
+    <h2>5. Third-party links</h2>
+    <p>Our pages may link to third-party websites, such as official app stores. We are not responsible for the privacy practices of those sites.</p>
+
+    <h2>6. Children</h2>
+    <p>The website is intended for a general audience and is not directed at children under 13. We do not knowingly collect personal information from children under 13.</p>
+
+    <h2>7. Changes</h2>
+    <p>We may update this policy from time to time. Material changes will be reflected by the "last updated" date.</p>
+
+    <h2>8. Contact</h2>
+    <p>Questions about this policy can be sent via our <a href="/contact/">contact page</a>.</p>
+  </div>
+</BaseLayout>

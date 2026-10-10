@@ -1,0 +1,31 @@
+---
+import type { GameConfig } from '@/engine/config/types';
+import type { Article } from '@/engine/content/query';
+import ArticleCard from '@/engine/components/ArticleCard.astro';
+
+interface Props {
+  game: GameConfig;
+  title: string;
+  articles: Article[];
+  seeAllPath?: string;
+}
+const { game, title, articles, seeAllPath } = Astro.props;
+---
+
+{
+  articles.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>{title}</h2>
+          {seeAllPath && <a href={seeAllPath}>See all</a>}
+        </div>
+        <div class="grid cols-3">
+          {articles.slice(0, 3).map((a) => (
+            <ArticleCard game={game} article={a} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

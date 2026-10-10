@@ -1,0 +1,113 @@
+---
+import BaseLayout from '@/engine/layouts/BaseLayout.astro';
+const title = 'Search';
+const description = 'Search Kingshot and other mobile game guides on GameAtlas.';
+---
+
+<BaseLayout
+  title={`${title} | GameAtlas`}
+  description={description}
+  path="/search/"
+>
+  <div class="container section search-page">
+    <h1>Search Guides</h1>
+    <form id="search-form" role="search" autocomplete="off">
+      <input
+        id="search-input"
+        type="search"
+        placeholder="Search guides, codes, heroes..."
+        aria-label="Search query"
+        autofocus
+      />
+      <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+    <p id="search-status" class="muted" aria-live="polite"></p>
+    <ul id="search-results" class="results"></ul>
+  </div>
+</BaseLayout>
+
+<style>
+  .search-page { max-width:720px; }
+  #search-form { display:flex; gap:8px; margin:14px 0 6px; }
+  #search-input { flex:1; padding:11px 14px; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--surface); color:var(--text); font-size:1rem; }
+  .results { list-style:none; padding:0; margin:14px 0 0; display:grid; gap:10px; }
+  .result-item a { display:flex; flex-direction:column; gap:2px; border:1px solid var(--border); border-radius:var(--radius-sm); padding:12px 14px; background:var(--surface); }
+  .result-title { font-weight:700; color:var(--text); }
+  .result-meta { font-size:.8rem; color:var(--accent); }
+  .result-desc { color:var(--text-muted); font-size:.9rem; margin:0; }
+</style>
+
+<script>
+  interface Doc {
+    title: string;
+    description: string;
+    game: string;
+    section: string;
+    path: string;
+    updatedAt: string;
+  }
+
+  const input = document.getElementById('search-input') as HTMLInputElement;
+  const form = document.getElementById('search-form') as HTMLFormElement;
+  const list = document.getElementById('search-results') as HTMLUListElement;
+  const status = document.getElementById('search-status') as HTMLParagraphElement;
+
+  let docs: Doc[] = [];
+
+  async function load(): Promise<Doc[]> {
+    if (docs.length) return docs;
+    const res = await fetch('/search-index.json');
+    docs = await res.json();
+    return docs;
+  }
+
+  function run(query: string) {
+    const q = query.trim().toLowerCase();
+    list.innerHTML = '';
+    if (!q) {
+      status.textContent = 'Type to search the guides.';
+      return;
+    }
+    const terms = q.split(/\s+/);
+    const matches = docs
+      .map((d) => {
+        const hay = `${d.title} ${d.description} ${d.game} ${d.section}`.toLowerCase();
+        const score = terms.reduce((s, t) => s + (hay.includes(t) ? 1 : 0), 0);
+        return { d, score };
+      })
+      .filter((x) => x.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 12);
+
+    status.textContent = matches.length
+      ? `${matches.length} result${matches.length === 1 ? '' : 's'}`
+      : 'No results found.';
+
+    for (const { d } of matches) {
+      const li = document.createElement('li');
+      li.className = 'result-item';
+      li.innerHTML = `<a href="${d.path}">
+        <span class="result-meta">${d.game} · ${d.section} · ${d.updatedAt}</span>
+        <span class="result-title"></span>
+        <span class="result-desc"></span>
+      </a>`;
+      li.querySelector('.result-title')!.textContent = d.title;
+      li.querySelector('.result-desc')!.textContent = d.description;
+      list.appendChild(li);
+    }
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    run(input.value);
+  });
+  input.addEventListener('input', () => run(input.value));
+  load().then(() => {
+    status.textContent = 'Type to search the guides.';
+    const q = new URLSearchParams(window.location.search).get('q');
+    if (q) {
+      input.value = q;
+      run(q);
+    }
+  });
+</script>

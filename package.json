@@ -1,0 +1,22 @@
+{
+  "name": "game-guide-engine",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "description": "Config-driven static engine for matrix-created mobile game guide sites",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "build:fast": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5",
+    "@astrojs/sitemap": "^3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "latest",
+    "typescript": "^5"
+  }
+}

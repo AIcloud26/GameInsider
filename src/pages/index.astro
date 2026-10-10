@@ -1,0 +1,44 @@
+---
+import { site } from '@/sites';
+import { gameBySlug } from '@/games';
+import { resolveHomepage } from '@/engine/registry/homepage';
+import { loadArticles } from '@/engine/content/query';
+import BaseLayout from '@/engine/layouts/BaseLayout.astro';
+import HeroSection from '@/engine/components/home/HeroSection.astro';
+import ArticleRail from '@/engine/components/home/ArticleRail.astro';
+import CategoryGrid from '@/engine/components/home/CategoryGrid.astro';
+import GamesDirectory from '@/engine/components/home/GamesDirectory.astro';
+import { sectionPath } from '@/engine/routing/paths';
+import { websiteSchema } from '@/engine/seo/jsonld';
+
+const primary = gameBySlug(site.primaryGame ?? '');
+
+if (!primary) {
+  // Hub with no primary game: fall back to a directory-style home.
+}
+
+const all = primary ? await loadArticles(primary) : [];
+const sections = primary ? resolveHomepage(primary.homepage, primary.features) : ['games'];
+---
+
+<BaseLayout
+  title={site.seo.defaultTitle}
+  description={site.seo.defaultDescription}
+  path="/"
+  game={primary}
+  jsonLd={websiteSchema(site)}
+>
+  {primary && sections.map((id) => {
+    if (id === 'hero') return <HeroSection game={primary} />;
+    if (id === 'featured-guides')
+      return <ArticleRail game={primary} title="Featured Guides" articles={all.filter(a=>a.data.featured)} seeAllPath={sectionPath(site, primary,'guides')} />;
+    if (id === 'popular-guides')
+      return <ArticleRail game={primary} title="Popular Guides" articles={all.filter(a=>a.data.popular)} seeAllPath={sectionPath(site, primary,'guides')} />;
+    if (id === 'latest-guides')
+      return <ArticleRail game={primary} title="Latest Guides" articles={all} seeAllPath={sectionPath(site, primary,'guides')} />;
+    if (id === 'categories') return <CategoryGrid game={primary} />;
+    if (id === 'games') return <GamesDirectory />;
+    return null;
+  })}
+  {!primary && <GamesDirectory />}
+</BaseLayout>

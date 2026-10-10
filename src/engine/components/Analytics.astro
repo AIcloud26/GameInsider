@@ -1,0 +1,22 @@
+---
+import { site } from '@/sites';
+const gaId = site.analytics.googleAnalyticsId;
+const gsc = site.analytics.googleSearchConsole;
+---
+{gsc && <meta name="google-site-verification" content={gsc} />}
+{
+  gaId && (
+    <>
+      <script
+        is:inline
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+      ></script>
+      <script
+        is:inline
+        define:vars={{ gaId }}
+        set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config',gaId);`}
+      ></script>
+    </>
+  )
+}

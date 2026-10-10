@@ -1,0 +1,61 @@
+---
+import type { SiteConfig } from '@/engine/config/types';
+import type { GameConfig } from '@/engine/config/types';
+import BaseLayout from '@/engine/layouts/BaseLayout.astro';
+import ArticleRail from '@/engine/components/home/ArticleRail.astro';
+import CategoryGrid from '@/engine/components/home/CategoryGrid.astro';
+import { loadArticles } from '@/engine/content/query';
+import { breadcrumbSchema } from '@/engine/seo/jsonld';
+import { sectionPath } from '@/engine/routing/paths';
+
+export async function getStaticPaths() {
+  const { site } = await import('@/sites');
+  const { games } = await import('@/games');
+  return games
+    .filter((g) => site.games.includes(g.slug))
+    .map((game) => ({ params: { game: game.slug }, props: { site, game } }));
+}
+
+const { site, game } = Astro.props as { site: SiteConfig; game: GameConfig };
+const articles = await loadArticles(game);
+const featured = articles.filter((a) => a.data.featured);
+const latest = articles;
+const path = sectionPath(site, game);
+---
+
+<BaseLayout
+  title={`${game.name} Guides, Codes & Tier Lists`}
+  description={game.description}
+  path={path}
+  game={game}
+  jsonLd={breadcrumbSchema(site, [
+    { label: 'Home', path: '/' },
+    { label: game.name, path },
+  ])}
+>
+  <section class="gameband">
+    <div class="container band-inner">
+      <img src={game.icon} alt="" width="72" height="72" class="band-icon" />
+      <div>
+        <h1>{game.name}</h1>
+        <p class="band-tag">{game.tagline}</p>
+        <p class="muted band-meta">
+          {game.publisher} · {game.genres.join(', ')} · {game.platforms.join(' & ')}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <ArticleRail game={game} title="Featured" articles={featured} seeAllPath={sectionPath(site, game,'guides')} />
+  <ArticleRail game={game} title="Latest Updates" articles={latest} seeAllPath={sectionPath(site, game,'guides')} />
+  <CategoryGrid game={game} />
+</BaseLayout>
+
+<style>
+  .gameband { background: var(--bg-soft); border-bottom:1px solid var(--border); padding:30px 0; }
+  .band-inner { display:flex; gap:18px; align-items:center; }
+  .band-icon { width:72px;height:72px;border-radius:var(--radius); background:var(--surface-2); flex:none; }
+  .gameband h1 { margin-bottom:2px; }
+  .band-tag { margin:0 0 4px; font-weight:600; }
+  .band-meta { font-size:.85rem; margin:0; }
+</style>

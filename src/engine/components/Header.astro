@@ -1,0 +1,117 @@
+---
+import { site } from '@/sites';
+import type { GameConfig } from '@/engine/config/types';
+import { sectionPath } from '@/engine/routing/paths';
+
+interface Props {
+  game?: GameConfig;
+}
+const { game } = Astro.props;
+
+// Game-scoped nav is generated from navigation + feature flags only.
+const gameNav = game
+  ? game.navigation.filter(
+      (n) => !n.feature || game.features[n.feature],
+    )
+  : [];
+
+const hubLinks = [
+  { to: '/', label: 'Home' },
+  { to: '/games/', label: 'Games' },
+  { to: '/about/', label: 'About' },
+  { to: '/contact/', label: 'Contact' },
+];
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label={`${site.siteName} home`}>
+      <span class="brand-mark" aria-hidden="true">◆</span>
+      <span class="brand-name">{site.siteName}</span>
+    </a>
+
+    <button
+      class="nav-toggle"
+      aria-label="Toggle navigation"
+      aria-expanded="false"
+      aria-controls="primary-nav"
+    >
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="primary-nav" class="primary-nav" aria-label="Primary">
+      {
+        game ? (
+          <>
+            {gameNav.map((n) => (
+              <a href={sectionPath(site, game, n.to)}>{n.label}</a>
+            ))}
+            <a href="/games/" class="nav-more">All Games</a>
+          </>
+        ) : (
+          hubLinks.map((l) => <a href={l.to}>{l.label}</a>)
+        )
+      }
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-h);
+    gap: 12px;
+  }
+  .brand { display: flex; align-items: center; gap: 8px; text-decoration: none !important; }
+  .brand-mark { color: var(--primary); font-size: 1.1rem; }
+  .brand-name { font-weight: 800; color: var(--text); letter-spacing: .3px; }
+
+  .primary-nav { display: none; flex-direction: column; gap: 4px; }
+  .primary-nav a {
+    color: var(--text);
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+  }
+  .primary-nav a:hover { background: var(--surface-2); text-decoration: none; }
+  .nav-more { color: var(--accent) !important; }
+
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 8px;
+    cursor: pointer;
+  }
+  .nav-toggle span { width: 20px; height: 2px; background: var(--text); }
+
+  @media (min-width: 860px) {
+    .nav-toggle { display: none; }
+    .primary-nav { display: flex !important; flex-direction: row; align-items: center; gap: 2px; }
+  }
+</style>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('.nav-toggle');
+  const nav = document.querySelector<HTMLElement>('#primary-nav');
+  if (btn && nav) {
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      nav.style.display = open ? '' : 'flex';
+    });
+  }
+</script>

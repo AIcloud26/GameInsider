@@ -1,0 +1,89 @@
+---
+import type { SiteConfig } from '@/engine/config/types';
+import type { GameConfig } from '@/engine/config/types';
+import BaseLayout from '@/engine/layouts/BaseLayout.astro';
+import ArticleCard from '@/engine/components/ArticleCard.astro';
+import AdSlot from '@/engine/components/AdSlot.astro';
+import { loadArticles } from '@/engine/content/query';
+import { breadcrumbSchema } from '@/engine/seo/jsonld';
+import { sectionPath } from '@/engine/routing/paths';
+
+// URL section -> content category mapping lives in Core, not in game code.
+const sectionToCategory: Record<string, import('@/engine/content/query').Article['data']['category']> = {
+  guides: 'guides',
+  codes: 'codes',
+  heroes: 'heroes',
+  'tier-list': 'tier-lists',
+  events: 'events',
+};
+
+export async function getStaticPaths() {
+  const { site } = await import('@/sites');
+  const { games } = await import('@/games');
+  const paths: { params: { game: string; section: string }; props: { site: SiteConfig; game: GameConfig } }[] = [];
+  for (const game of games) {
+    if (!site.games.includes(game.slug)) continue;
+    for (const cat of game.categories) {
+      // Sections are emitted only when the backing feature is enabled.
+      if (!game.features[cat.feature]) continue;
+      paths.push({
+        params: { game: game.slug, section: cat.slug },
+        props: { site, game },
+      });
+    }
+  }
+  return paths;
+}
+
+const { site, game } = Astro.props as { site: SiteConfig; game: GameConfig };
+const { section } = Astro.params as { section: string };
+
+const category = sectionToCategory[section];
+const categoryConfig = game.categories.find((c) => c.slug === section);
+const articles = category ? await loadArticles(game, { category }) : [];
+const path = sectionPath(site, game, section);
+---
+
+<BaseLayout
+  title={`${game.name} ${categoryConfig?.label ?? section}`}
+  description={categoryConfig?.description ?? `${game.name} ${section}`}
+  path={path}
+  game={game}
+  jsonLd={breadcrumbSchema(site, [
+    { label: 'Home', path: '/' },
+    { label: game.name, path: sectionPath(site, game) },
+    { label: categoryConfig?.label ?? section, path },
+  ])}
+>
+  <div class="container section">
+    <nav class="crumbs muted" aria-label="Breadcrumb">
+      <a href="/">Home</a> <span>/</span>
+      <a href={sectionPath(site, game)}>{game.name}</a> <span>/</span>
+      {categoryConfig?.label ?? section}
+    </nav>
+
+    <h1>{game.name} {categoryConfig?.label ?? section}</h1>
+    <p class="muted lead">{categoryConfig?.description}</p>
+
+    <AdSlot position="header" />
+
+    {articles.length === 0 ? (
+      <p class="empty muted">Content is being prepared and will be published soon.</p>
+    ) : (
+      <div class="grid cols-2 list-grid">
+        {articles.map((a) => (
+          <ArticleCard game={game} article={a} />
+        ))}
+      </div>
+    )}
+
+    <AdSlot position="footer" />
+  </div>
+</BaseLayout>
+
+<style>
+  .crumbs { font-size:.88rem; margin-bottom:14px; display:flex; gap:6px; align-items:center; }
+  .lead { max-width:60ch; }
+  .list-grid { margin-top:8px; }
+  .empty { padding:24px 0; }
+</style>

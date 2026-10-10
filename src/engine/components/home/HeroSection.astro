@@ -1,0 +1,44 @@
+---
+import { site } from '@/sites';
+import type { GameConfig } from '@/engine/config/types';
+import { sectionPath } from '@/engine/routing/paths';
+interface Props { game: GameConfig; }
+const { game } = Astro.props;
+---
+
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <span class="badge hero-badge">Trusted Mobile Game Guides</span>
+      <h1>{game.name} Guides, Codes &amp; Tier Lists</h1>
+      <p class="hero-sub">{game.tagline}. Beginner-friendly walkthroughs, working gift codes and up-to-date hero rankings.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href={sectionPath(site, game, 'guides')}>Read the Guides</a>
+        <a class="btn btn-ghost" href={sectionPath(site, game, 'codes')}>Active Codes</a>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <img src={game.heroImage} alt="" width="320" height="240" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background:
+      radial-gradient(900px 380px at 85% -10%, color-mix(in srgb, var(--primary) 22%, transparent), transparent 60%),
+      radial-gradient(700px 360px at -10% 110%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 60%),
+      var(--bg-soft);
+    border-bottom: 1px solid var(--border);
+    padding: 44px 0;
+  }
+  .hero-inner { display: grid; gap: 24px; align-items: center; }
+  .hero-badge { margin-bottom: 12px; }
+  .hero-sub { color: var(--text-muted); font-size: 1.05rem; max-width: 52ch; }
+  .hero-cta { display: flex; flex-wrap: wrap; wrap: nowrap; gap: 10px; margin-top: 8px; }
+  .hero-art { display: none; }
+  @media (min-width: 880px) {
+    .hero-inner { grid-template-columns: 1.4fr 1fr; }
+    .hero-art { display: block; text-align: center; }
+  }
+</style>

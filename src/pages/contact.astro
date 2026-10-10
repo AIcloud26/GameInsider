@@ -1,0 +1,48 @@
+---
+import BaseLayout from '@/engine/layouts/BaseLayout.astro';
+const title = 'Contact Us';
+const description = 'Get in touch with the GameAtlas team about corrections, feedback or partnerships.';
+---
+
+<BaseLayout title={`${title} | GameAtlas`} description={description} path="/contact/">
+  <div class="container section legal">
+    <h1>Contact Us</h1>
+    <p class="muted">Questions, corrections or game requests are welcome. We read every message, though reply times may vary.</p>
+
+    {/* Front-end only: the form action/backend must be configured before launch
+        (e.g. a form service). It does not send mail on its own. */}
+    <form class="contact-form" id="contact-form">
+      <label>Name
+        <input type="text" name="name" required />
+      </label>
+      <label>Email
+        <input type="email" name="email" required />
+      </label>
+      <label>Subject
+        <input type="text" name="subject" required />
+      </label>
+      <label>Message
+        <textarea name="message" rows="6" required></textarea>
+      </label>
+      <button class="btn btn-primary" type="submit">Send message</button>
+      <p id="form-note" class="muted"></p>
+    </form>
+  </div>
+</BaseLayout>
+
+<style>
+  .legal { max-width:720px; }
+  .contact-form { display:grid; gap:14px; margin-top:10px; }
+  label { display:grid; gap:6px; font-weight:600; font-size:.92rem; }
+  input, textarea { padding:10px 12px; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--surface); color:var(--text); font:inherit; }
+  .contact-form .btn { justify-self:start; }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const note = document.getElementById('form-note') as HTMLParagraphElement;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    note.textContent = 'This contact form is not connected yet. Please configure a form endpoint before launch.';
+  });
+</script>

@@ -1,0 +1,43 @@
+---
+import '@/styles/global.css';
+import Header from '@/engine/components/Header.astro';
+import Footer from '@/engine/components/Footer.astro';
+import Analytics from '@/engine/components/Analytics.astro';
+import type { GameConfig } from '@/engine/config/types';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  game?: GameConfig;
+  image?: string;
+  type?: 'website' | 'article';
+  publishedTime?: Date;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  noindex?: boolean;
+}
+
+import Seo from '@/engine/seo/Seo.astro';
+const props = Astro.props;
+const { game } = props;
+---
+
+<!doctype html>
+<html lang="en" data-theme={game?.theme.mode ?? 'dark'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <Seo {...props} />
+    <Analytics />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <Header game={game} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

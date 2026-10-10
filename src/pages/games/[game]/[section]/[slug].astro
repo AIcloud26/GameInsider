@@ -1,0 +1,148 @@
+---
+import { render } from 'astro:content';
+import type { SiteConfig } from '@/engine/config/types';
+import type { GameConfig } from '@/engine/config/types';
+import BaseLayout from '@/engine/layouts/BaseLayout.astro';
+import AdSlot from '@/engine/components/AdSlot.astro';
+import { loadArticles, categoryToSection } from '@/engine/content/query';
+import ArticleCard from '@/engine/components/ArticleCard.astro';
+import { articleSchema as articleLd, breadcrumbSchema, faqSchema } from '@/engine/seo/jsonld';
+import { sectionPath, articlePath } from '@/engine/routing/paths';
+
+export async function getStaticPaths() {
+  const { site } = await import('@/sites');
+  const { games } = await import('@/games');
+  const paths: any[] = [];
+  for (const game of games) {
+    if (!site.games.includes(game.slug)) continue;
+    const all = await loadArticles(game);
+    for (const article of all) {
+      const section = categoryToSection(article.data.category);
+      paths.push({
+        params: { game: game.slug, section, slug: article.id },
+        props: { site, game, article, all },
+      });
+    }
+  }
+  return paths;
+}
+
+const { site, game, article, all } = Astro.props as {
+  site: SiteConfig;
+  game: GameConfig;
+  article: Awaited<ReturnType<typeof loadArticles>>[number];
+  all: Awaited<ReturnType<typeof loadArticles>>;
+};
+
+const { Content, headings } = await render(article);
+const d = article.data;
+const section = categoryToSection(d.category);
+const path = articlePath(site, game, section, article.id);
+
+const toc = headings.filter((h) => h.depth === 2);
+const sameCategory = all.filter(
+  (a) => a.id !== article.id && a.data.category === d.category,
+);
+const related = sameCategory.slice(0, 3);
+
+const idx = all.findIndex((a) => a.id === article.id);
+const prev = all[idx + 1];
+const next = all[idx - 1];
+
+const date = d.updatedAt.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const jsonLd: Record<string, unknown>[] = [breadcrumbSchema(site, [
+  { label: 'Home', path: '/' },
+  { label: game.name, path: sectionPath(site, game) },
+  { label: section, path: sectionPath(site, game, section) },
+  { label: d.title, path },
+]), articleLd(site, game, article, path)];
+if (d.faq?.length) jsonLd.push(faqSchema(d.faq));
+---
+
+<BaseLayout
+  title={d.seo?.title ?? d.title}
+  description={d.seo?.description ?? d.description}
+  path={path}
+  game={game}
+  image={undefined}
+  type="article"
+  publishedTime={d.publishedAt}
+  jsonLd={jsonLd}
+>
+  <article class="container article-wrap">
+    <nav class="crumbs muted" aria-label="Breadcrumb">
+      <a href="/">Home</a> <span>/</span>
+      <a href={sectionPath(site, game)}>{game.name}</a> <span>/</span>
+      <a href={sectionPath(site, game, section)}>{section}</a>
+    </nav>
+
+    <header class="article-header">
+      <h1>{d.title}</h1>
+      <div class="byline muted">
+        <span>By {d.author}</span> ·
+        <span>Updated {date}</span>
+        {!d.verified && <span class="badge badge-warn verify-flag">Pending verification</span>}
+      </div>
+    </header>
+
+    <div class="article-layout">
+      {toc.length > 0 && (
+        <aside class="toc" aria-label="Table of contents">
+          <p class="toc-title">On this page</p>
+          <ul>
+            {toc.map((h) => (
+              <li><a href={`#${h.slug}`}>{h.text}</a></li>
+            ))}
+          </ul>
+        </aside>
+      )}
+
+      <div class="prose">
+        <AdSlot position="inContent" />
+        <Content />
+        {d.faq && d.faq.length > 0 && (
+          <section class="faq">
+            <h2>Frequently Asked Questions</h2>
+            {d.faq.map((f) => (
+              <details>
+                <summary>{f.q}</summary>
+                <p>{f.a}</p>
+              </details>
+            ))}
+          </section>
+        )}
+      </div>
+    </div>
+
+    <nav class="prevnext" aria-label="Article navigation">
+      {prev ? (
+        <a href={articlePath(site, game, categoryToSection(prev.data.category), prev.id)} class="pn">
+          <span class="muted">← Previous</span>
+          <span>{prev.data.title}</span>
+        </a>
+      ) : <span />}
+      {next ? (
+        <a href={articlePath(site, game, categoryToSection(next.data.category), next.id)} class="pn pn-right">
+          <span class="muted">Next →</span>
+          <span>{next.data.title}</span>
+        </a>
+      ) : <span />}
+    </nav>
+  </article>
+
+  {related.length > 0 && (
+    <section class="section related">
+      <div class="container">
+        <div class="section-head"><h2>Related Guides</h2></div>
+        <div class="grid cols-3">
+          {related.map((a) => <ArticleCard game={game} article={a} />)}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>

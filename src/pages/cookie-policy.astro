@@ -1,0 +1,29 @@
+---
+import BaseLayout from '@/engine/layouts/BaseLayout.astro';
+const title = 'Cookie Policy';
+const description = 'How GameAtlas uses cookies and similar technologies.';
+const updated = 'October 9, 2026';
+---
+
+<BaseLayout title={`${title} | GameAtlas`} description={description} path="/cookie-policy/">
+  <div class="container section legal">
+    <h1>Cookie Policy</h1>
+    <p class="muted">Last updated: {updated}</p>
+
+    <h2>What cookies are</h2>
+    <p>Cookies are small text files stored on your device that help websites remember preferences and understand how the site is used.</p>
+
+    <h2>How we use them</h2>
+    <ul>
+      <li><strong>Essential:</strong> required for the site to function.</li>
+      <li><strong>Analytics:</strong> help us understand usage when analytics is enabled.</li>
+      <li><strong>Advertising:</strong> used by ad partners to serve and measure ads when advertising is enabled.</li>
+    </ul>
+
+    <h2>Your choices</h2>
+    <p>Most browsers let you block or delete cookies. Disabling them may affect some site features. You can also use available industry opt-out tools for personalised advertising.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about cookies can be sent via our <a href="/contact/">contact page</a>.</p>
+  </div>
+</BaseLayout>

@@ -1,0 +1,32 @@
+---
+import BaseLayout from '@/engine/layouts/BaseLayout.astro';
+const title = 'Terms of Service';
+const description = 'The terms that govern your use of GameAtlas.';
+const updated = 'October 9, 2026';
+---
+
+<BaseLayout title={`${title} | GameAtlas`} description={description} path="/terms/">
+  <div class="container section legal">
+    <h1>Terms of Service</h1>
+    <p class="muted">Last updated: {updated}</p>
+    <p>By accessing GameAtlas, you agree to these terms. This is a template and should be reviewed by a qualified professional.</p>
+
+    <h2>Use of the site</h2>
+    <p>You may use the site for personal, non-commercial informational purposes. You agree not to misuse the site or attempt to disrupt its operation.</p>
+
+    <h2>Content</h2>
+    <p>Guides are provided "as is" for general information and may change as games are updated. We do not guarantee that codes remain active or that strategies suit every situation.</p>
+
+    <h2>Intellectual property</h2>
+    <p>Game names, logos and related trademarks belong to their respective owners, including Century Games for Kingshot. GameAtlas claims no ownership of third-party marks.</p>
+
+    <h2>Third-party links</h2>
+    <p>The site may contain links to external websites. We are not responsible for their content or availability.</p>
+
+    <h2>Limitation of liability</h2>
+    <p>To the fullest extent permitted by law, GameAtlas is not liable for any damages arising from your use of the site.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about these terms can be sent via our <a href="/contact/">contact page</a>.</p>
+  </div>
+</BaseLayout>

@@ -1,0 +1,34 @@
+---
+import { site } from '@/sites';
+interface Props {
+  position: keyof typeof site.ads.positions;
+  label?: string;
+}
+const { position, label } = Astro.props;
+// Renders nothing unless ads are enabled, the position is on and a slot exists.
+const visible =
+  site.ads.enabled &&
+  site.ads.positions[position] &&
+  site.ads.slots?.[position];
+---
+
+{
+  visible && (
+    <aside class="ad-slot" aria-label="Advertisement">
+      <span class="ad-label">Advertisement</span>
+      <div
+        class="ad-unit"
+        data-ad-client={site.ads.client}
+        data-ad-slot={site.ads.slots![position]}
+      >
+        {label ?? ''}
+      </div>
+    </aside>
+  )
+}
+
+<style>
+  .ad-slot { margin: 24px 0; text-align: center; }
+  .ad-label { display: block; font-size: .68rem; letter-spacing: .8px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+  .ad-unit { min-height: 90px; display: grid; place-items: center; border: 1px dashed var(--border); border-radius: var(--radius-sm); color: var(--text-muted); font-size: .85rem; }
+</style>

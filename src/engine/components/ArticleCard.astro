@@ -1,0 +1,40 @@
+---
+import { site } from '@/sites';
+import type { GameConfig } from '@/engine/config/types';
+import type { Article } from '@/engine/content/query';
+import { categoryToSection } from '@/engine/content/query';
+import { articlePath } from '@/engine/routing/paths';
+
+interface Props {
+  game: GameConfig;
+  article: Article;
+}
+const { game, article } = Astro.props;
+const d = article.data;
+const section = categoryToSection(d.category);
+const path = articlePath(site, game, section, article.id);
+const date = d.updatedAt.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+---
+
+<a class="card" href={path}>
+  <div class="card-thumb" aria-hidden="true">
+    <span class="thumb-mark">◆</span>
+  </div>
+  <div class="card-body">
+    <span class="card-meta">
+      <span class="badge">{section.replace('-', ' ')}</span>
+    </span>
+    <span class="card-title">{d.title}</span>
+    <p class="card-excerpt">{d.description}</p>
+    <span class="card-meta">Updated {date}</span>
+  </div>
+</a>
+
+<style>
+  .thumb-mark { color: var(--primary); font-size: 1.6rem; opacity: .85; }
+  a.card { text-decoration: none !important; }
+</style>

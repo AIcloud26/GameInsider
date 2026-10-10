@@ -1,0 +1,40 @@
+---
+import { site } from '@/sites';
+import { games } from '@/games';
+import { sectionPath } from '@/engine/routing/paths';
+
+const listed = games.filter((g) => site.games.includes(g.slug));
+---
+
+<section class="section">
+  <div class="container">
+    <div class="section-head"><h2>All Game Guides</h2></div>
+    <div class="grid cols-3">
+      {listed.map((g) => (
+        <a class="game-card" href={sectionPath(site, g)}>
+          <div class="game-icon" aria-hidden="true"><img src={g.icon} alt="" width="56" height="56" /></div>
+          <div>
+            <span class="game-name">{g.name}</span>
+            <span class="game-genre muted">{g.genres[0]}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .game-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none !important;
+  }
+  .game-icon { width: 56px; height: 56px; border-radius: var(--radius-sm); overflow: hidden; background: var(--surface-2); flex: none; }
+  .game-name { display: block; font-weight: 800; color: var(--text); }
+  .game-genre { font-size: .85rem; }
+</style>

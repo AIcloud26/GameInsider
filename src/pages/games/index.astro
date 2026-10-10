@@ -1,0 +1,47 @@
+---
+import { site } from '@/sites';
+import { games } from '@/games';
+import { sectionPath } from '@/engine/routing/paths';
+import BaseLayout from '@/engine/layouts/BaseLayout.astro';
+import { breadcrumbSchema } from '@/engine/seo/jsonld';
+
+const title = 'All Game Guides';
+const description =
+  'Browse all mobile game guides on GameAtlas — codes, tier lists, heroes and strategies.';
+---
+
+<BaseLayout
+  title={`${title} | GameAtlas`}
+  description={description}
+  path="/games/"
+  jsonLd={breadcrumbSchema(site, [
+    { label: 'Home', path: '/' },
+    { label: 'Games', path: '/games/' },
+  ])}
+>
+  <div class="container section">
+    <nav class="crumbs muted" aria-label="Breadcrumb">
+      <a href="/">Home</a> <span>/</span> Games
+    </nav>
+    <h1>All Game Guides</h1>
+    <p class="muted">Choose a game to see its guides, codes, heroes and tier lists.</p>
+    <div class="grid cols-2">
+      {games.map((g) => (
+        <a class="g-card" href={sectionPath(site, g)}>
+          <img src={g.icon} alt="" width="64" height="64" class="g-icon" />
+          <div>
+            <span class="g-name">{g.name}</span>
+            <span class="muted g-meta">{g.genres.join(' · ')}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .g-card { display:flex; align-items:center; gap:16px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:18px; text-decoration:none !important; }
+  .g-icon { width:64px; height:64px; border-radius:var(--radius-sm); background:var(--surface-2); flex:none; }
+  .g-name { display:block; font-weight:800; color:var(--text); font-size:1.1rem; }
+  .g-meta { font-size:.85rem; }
+</style>
