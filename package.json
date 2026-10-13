@@ -12,11 +12,12 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5",
-    "@astrojs/sitemap": "^3"
+    "@astrojs/sitemap": "^3",
+    "astro": "^5"
   },
   "devDependencies": {
     "@astrojs/check": "latest",
+    "puppeteer": "^25.13.0",
     "typescript": "^5"
   }
 }
