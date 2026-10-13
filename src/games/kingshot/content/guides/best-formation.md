@@ -3,9 +3,9 @@ title: "Kingshot Best Formation Guide: Positioning for Defence & Battles"
 description: "How to position your heroes in Kingshot — front and back line roles, counters and formation principles."
 category: guides
 game: kingshot
-publishedAt: 2026-10-09
-updatedAt: 2026-10-09
-author: "GameAtlas Editorial"
+publishedAt: 2026-10-04
+updatedAt: 2026-10-07
+author: "GamesHub Editorial"
 featured: true
 popular: false
 verified: false

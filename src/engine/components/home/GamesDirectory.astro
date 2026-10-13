@@ -2,6 +2,7 @@
 import { site } from '@/sites';
 import { games } from '@/games';
 import { sectionPath } from '@/engine/routing/paths';
+import { asset } from '@/engine/routing/assets';
 
 const listed = games.filter((g) => site.games.includes(g.slug));
 ---
@@ -12,7 +13,7 @@ const listed = games.filter((g) => site.games.includes(g.slug));
     <div class="grid cols-3">
       {listed.map((g) => (
         <a class="game-card" href={sectionPath(site, g)}>
-          <div class="game-icon" aria-hidden="true"><img src={g.icon} alt="" width="56" height="56" /></div>
+          <div class="game-icon" aria-hidden="true"><img src={g.icon ? asset(g.icon) : ''} alt="" width="56" height="56" loading="lazy" decoding="async" /></div>
           <div>
             <span class="game-name">{g.name}</span>
             <span class="game-genre muted">{g.genres[0]}</span>

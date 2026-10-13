@@ -3,9 +3,9 @@ title: "Kingshot Heroes List: All Classes & Roles Explained"
 description: "Overview of Kingshot's hero system — Infantry, Archer and Cavalry classes, roles and how upgrades work."
 category: heroes
 game: kingshot
-publishedAt: 2026-10-09
-updatedAt: 2026-10-09
-author: "GameAtlas Editorial"
+publishedAt: 2026-10-07
+updatedAt: 2026-10-07
+author: "GamesHub Editorial"
 featured: false
 popular: true
 verified: false

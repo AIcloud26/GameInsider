@@ -3,11 +3,11 @@ title: "Kingshot Beginner Guide: First Days, Base Building & Progression"
 description: "What to prioritise in your first days in Kingshot — base upgrades, heroes, resources and avoiding common mistakes."
 category: guides
 game: kingshot
-publishedAt: 2026-10-09
-updatedAt: 2026-10-09
-author: "GameAtlas Editorial"
+publishedAt: 2026-10-03
+updatedAt: 2026-10-08
+author: "GamesHub Editorial"
 featured: true
-popular: true
+popular: false
 verified: false
 sources:
   - "https://www.mmoculture.com/featured/top-grossing-mobile-games/"

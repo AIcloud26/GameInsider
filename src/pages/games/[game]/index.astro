@@ -7,6 +7,7 @@ import CategoryGrid from '@/engine/components/home/CategoryGrid.astro';
 import { loadArticles } from '@/engine/content/query';
 import { breadcrumbSchema } from '@/engine/seo/jsonld';
 import { sectionPath } from '@/engine/routing/paths';
+import { asset } from '@/engine/routing/assets';
 
 export async function getStaticPaths() {
   const { site } = await import('@/sites');
@@ -19,7 +20,8 @@ export async function getStaticPaths() {
 const { site, game } = Astro.props as { site: SiteConfig; game: GameConfig };
 const articles = await loadArticles(game);
 const featured = articles.filter((a) => a.data.featured);
-const latest = articles;
+const featuredIds = new Set(featured.map((a) => a.id));
+const latest = articles.filter((a) => !featuredIds.has(a.id));
 const path = sectionPath(site, game);
 ---
 
@@ -35,7 +37,7 @@ const path = sectionPath(site, game);
 >
   <section class="gameband">
     <div class="container band-inner">
-      <img src={game.icon} alt="" width="72" height="72" class="band-icon" />
+      <img src={asset(game.icon)} alt="" width="72" height="72" class="band-icon" loading="lazy" decoding="async" />
       <div>
         <h1>{game.name}</h1>
         <p class="band-tag">{game.tagline}</p>

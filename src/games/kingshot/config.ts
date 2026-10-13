@@ -93,7 +93,7 @@ export const kingshot: GameConfig = {
     'games',
   ],
   seo: {
-    titleTemplate: '{title} - Kingshot Guide | GameAtlas',
+    titleTemplate: '{title} | GamesHub',
     descriptionTemplate: '{description}',
   },
   social: {

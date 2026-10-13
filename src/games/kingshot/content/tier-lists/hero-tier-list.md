@@ -3,10 +3,10 @@ title: "Kingshot Tier List: Best Heroes Ranked (Current Meta)"
 description: "Kingshot heroes ranked by overall strength across game modes, with tiers explained and a patch note."
 category: tier-lists
 game: kingshot
-publishedAt: 2026-10-09
-updatedAt: 2026-10-09
-author: "GameAtlas Editorial"
-featured: true
+publishedAt: 2026-10-06
+updatedAt: 2026-10-06
+author: "GamesHub Editorial"
+featured: false
 popular: true
 verified: false
 sources:

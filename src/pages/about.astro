@@ -1,14 +1,15 @@
 ---
+import { withBase } from '@/engine/routing/paths';
 import BaseLayout from '@/engine/layouts/BaseLayout.astro';
-const title = 'About GameAtlas';
+const title = 'About GamesHub';
 const description =
-  'GameAtlas publishes clear, mobile-first English guides, codes and tier lists for popular mobile games.';
+  'GamesHub publishes clear, mobile-first English guides, codes and tier lists for popular mobile games.';
 ---
 
-<BaseLayout title={`${title} | GameAtlas`} description={description} path="/about/">
+<BaseLayout title={`${title} | GamesHub`} description={description} path="/about/">
   <div class="container section legal">
-    <h1>About GameAtlas</h1>
-    <p>GameAtlas is an independent publisher of mobile game guides. Our goal is simple: help players progress faster with clear, accurate and mobile-friendly walkthroughs, redeem codes, hero rankings and event advice.</p>
+    <h1>About GamesHub</h1>
+    <p>GamesHub is an independent publisher of mobile game guides. Our goal is simple: help players progress faster with clear, accurate and mobile-friendly walkthroughs, redeem codes, hero rankings and event advice.</p>
 
     <h2>How we work</h2>
     <ul>
@@ -18,9 +19,9 @@ const description =
     </ul>
 
     <h2>Editorial independence</h2>
-    <p>GameAtlas is not affiliated with, endorsed by or sponsored by the publishers of the games we cover. All game names, logos and trademarks are the property of their respective owners. We currently cover Kingshot by Century Games, with more games coming soon.</p>
+    <p>GamesHub is not affiliated with, endorsed by or sponsored by the publishers of the games we cover. All game names, logos and trademarks are the property of their respective owners. We currently cover Kingshot by Century Games, with more games coming soon.</p>
 
     <h2>Contact</h2>
-    <p>Found an error or want to suggest a game? Visit our <a href="/contact/">contact page</a>.</p>
+    <p>Found an error or want to suggest a game? Visit our <a href={withBase('/contact/')}>contact page</a>.</p>
   </div>
 </BaseLayout>

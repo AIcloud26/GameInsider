@@ -1,13 +1,18 @@
 import type { SiteConfig } from '@/engine/config/types';
 
 /**
- * GameAtlas (MVP hub site). Temporary umbrella brand; Kingshot is the primary
- * game. Domains/ads/analytics are config-only and contain no fabricated ids.
+ * GamesHub production site. Kingshot is the launch game; the engine is kept
+ * game-agnostic so more titles can be added via config + content only.
+ *
+ * Production deployment: GitHub Pages project site
+ *   https://aicloud26.github.io/GamesHub/  (host + base set at build time)
+ *
+ * Domains/ads/analytics are config-only and contain no fabricated ids.
  */
 export const gameatlas: SiteConfig = {
-  id: 'gameatlas',
-  siteName: 'GameAtlas',
-  domain: 'gameatlas.pages.dev',
+  id: 'gameshub',
+  siteName: 'GamesHub',
+  domain: process.env.PUBLIC_DOMAIN ?? 'aicloud26.github.io',
   mode: 'hub',
   primaryGame: 'kingshot',
   games: ['kingshot'],
@@ -17,10 +22,10 @@ export const gameatlas: SiteConfig = {
   showMultiGameNavigation: true,
   seo: {
     defaultTitle:
-      'GameAtlas — Mobile Game Guides, Codes, Tier Lists & Strategies',
+      'GamesHub — Kingshot Guides, Gift Codes, Tier Lists & Strategies',
     defaultDescription:
-      'Trusted English guides, redeem codes, hero tier lists and strategies for popular mobile games. Mobile-first and kept up to date.',
-    titleTemplate: '%s | GameAtlas',
+      'Trusted Kingshot guides, redeem codes, hero tier lists, formations and event strategies for mobile players. Mobile-first and kept up to date.',
+    titleTemplate: '%s | GamesHub',
   },
   ads: {
     enabled: false,

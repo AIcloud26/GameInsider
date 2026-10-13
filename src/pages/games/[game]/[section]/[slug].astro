@@ -7,7 +7,7 @@ import AdSlot from '@/engine/components/AdSlot.astro';
 import { loadArticles, categoryToSection } from '@/engine/content/query';
 import ArticleCard from '@/engine/components/ArticleCard.astro';
 import { articleSchema as articleLd, breadcrumbSchema, faqSchema } from '@/engine/seo/jsonld';
-import { sectionPath, articlePath } from '@/engine/routing/paths';
+import { sectionPath, articlePath, withBase } from '@/engine/routing/paths';
 
 export async function getStaticPaths() {
   const { site } = await import('@/sites');
@@ -76,7 +76,7 @@ if (d.faq?.length) jsonLd.push(faqSchema(d.faq));
 >
   <article class="container article-wrap">
     <nav class="crumbs muted" aria-label="Breadcrumb">
-      <a href="/">Home</a> <span>/</span>
+      <a href={withBase('/')}>Home</a> <span>/</span>
       <a href={sectionPath(site, game)}>{game.name}</a> <span>/</span>
       <a href={sectionPath(site, game, section)}>{section}</a>
     </nav>

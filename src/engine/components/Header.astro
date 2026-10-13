@@ -1,7 +1,7 @@
 ---
 import { site } from '@/sites';
 import type { GameConfig } from '@/engine/config/types';
-import { sectionPath } from '@/engine/routing/paths';
+import { sectionPath, withBase } from '@/engine/routing/paths';
 
 interface Props {
   game?: GameConfig;
@@ -25,7 +25,7 @@ const hubLinks = [
 
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="/" aria-label={`${site.siteName} home`}>
+    <a class="brand" href={withBase('/')} aria-label={`${site.siteName} home`}>
       <span class="brand-mark" aria-hidden="true">◆</span>
       <span class="brand-name">{site.siteName}</span>
     </a>
@@ -46,10 +46,10 @@ const hubLinks = [
             {gameNav.map((n) => (
               <a href={sectionPath(site, game, n.to)}>{n.label}</a>
             ))}
-            <a href="/games/" class="nav-more">All Games</a>
+            <a href={withBase('/games/')} class="nav-more">All Games</a>
           </>
         ) : (
-          hubLinks.map((l) => <a href={l.to}>{l.label}</a>)
+          hubLinks.map((l) => <a href={withBase(l.to)}>{l.label}</a>)
         )
       }
     </nav>

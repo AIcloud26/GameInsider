@@ -5,9 +5,9 @@ category: codes
 game: kingshot
 publishedAt: 2026-10-09
 updatedAt: 2026-10-09
-author: "GameAtlas Editorial"
+author: "GamesHub Editorial"
 featured: true
-popular: true
+popular: false
 verified: false
 sources:
   - "https://www.mrguider.org/codes/kingshot-codes/"
@@ -52,8 +52,12 @@ We only list codes that appeared across multiple public sources. Because codes c
 - **Usage limit:** some codes stop after a number of redemptions.
 - **Region or account restrictions** may occasionally apply.
 
-## Expired codes (recent examples)
+## Expired codes
 
-`EXPLORETHEWORLD` (expired 1 Oct 2026), `OFFICIALSTORE27`, `BESTMOM2026`. These no longer work and are listed only to help identify expired codes posted elsewhere.
+Codes from older posts and seasonal promotions stop working once their window
+closes, so we do not keep a fixed list of expired strings — a code that works
+for one account or region may already be dead by the time it is copied
+elsewhere. If a code above returns an error in game, treat it as expired and
+check back after the next update.
 
-Check our [beginner guide](/games/kingshot/guides/beginner-guide/) for the best way to use your rewards.
+Check our [beginner guide](../guides/beginner-guide/) for the best way to use your rewards.

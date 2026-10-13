@@ -1,21 +1,22 @@
 ---
+import { withBase } from '@/engine/routing/paths';
 import BaseLayout from '@/engine/layouts/BaseLayout.astro';
 const title = 'Privacy Policy';
-const description = 'How GameAtlas collects, uses and protects visitor information.';
+const description = 'How GamesHub collects, uses and protects visitor information.';
 const updated = 'October 9, 2026';
 ---
 
-<BaseLayout title={`${title} | GameAtlas`} description={description} path="/privacy/">
+<BaseLayout title={`${title} | GamesHub`} description={description} path="/privacy/">
   <div class="container section legal">
     <h1>Privacy Policy</h1>
     <p class="muted">Last updated: {updated}</p>
-    <p>This Privacy Policy explains how GameAtlas ("we", "us") handles information when you visit this website. This is a template policy and should be reviewed by a qualified professional before relying on it.</p>
+    <p>This Privacy Policy explains how GamesHub ("we", "us") handles information when you visit this website. This is a template policy and should be reviewed by a qualified professional before relying on it.</p>
 
     <h2>1. Information we collect</h2>
     <p>We do not require you to create an account. We may collect limited technical information automatically, such as browser type, device type, pages visited and referring pages, through analytics services if enabled.</p>
 
     <h2>2. Cookies</h2>
-    <p>We and our service providers may use cookies and similar technologies to understand site usage and, where enabled, to serve and measure advertising. You can control cookies through your browser settings. See our <a href="/cookie-policy/">Cookie Policy</a>.</p>
+    <p>We and our service providers may use cookies and similar technologies to understand site usage and, where enabled, to serve and measure advertising. You can control cookies through your browser settings. See our <a href={withBase('/cookie-policy/')}>Cookie Policy</a>.</p>
 
     <h2>3. How we use information</h2>
     <ul>
@@ -37,6 +38,6 @@ const updated = 'October 9, 2026';
     <p>We may update this policy from time to time. Material changes will be reflected by the "last updated" date.</p>
 
     <h2>8. Contact</h2>
-    <p>Questions about this policy can be sent via our <a href="/contact/">contact page</a>.</p>
+    <p>Questions about this policy can be sent via our <a href={withBase('/contact/')}>contact page</a>.</p>
   </div>
 </BaseLayout>

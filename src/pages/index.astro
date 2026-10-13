@@ -10,15 +10,28 @@ import CategoryGrid from '@/engine/components/home/CategoryGrid.astro';
 import GamesDirectory from '@/engine/components/home/GamesDirectory.astro';
 import { sectionPath } from '@/engine/routing/paths';
 import { websiteSchema } from '@/engine/seo/jsonld';
+import type { Article } from '@/engine/content/query';
 
 const primary = gameBySlug(site.primaryGame ?? '');
-
-if (!primary) {
-  // Hub with no primary game: fall back to a directory-style home.
-}
-
-const all = primary ? await loadArticles(primary) : [];
 const sections = primary ? resolveHomepage(primary.homepage, primary.features) : ['games'];
+
+let all: Article[] = [];
+if (primary) all = await loadArticles(primary);
+
+// Distinct selection logic for the three rails so cards never repeat:
+//  Featured -> editor-pinned (frontmatter featured:true), newest first
+//  Popular  -> explicit editor picks (popular:true), newest first
+//  Latest   -> everything not already pinned in Featured, newest by date
+const byDateDesc = (a: Article, b: Article) =>
+  b.data.updatedAt.valueOf() - a.data.updatedAt.valueOf();
+
+const featured = all.filter((a) => a.data.featured).sort(byDateDesc);
+const featuredIds = new Set(featured.map((a) => a.id));
+const popular = all
+  .filter((a) => a.data.popular && !featuredIds.has(a.id))
+  .sort(byDateDesc);
+const shownIds = new Set([...featured.map((a) => a.id), ...popular.map((a) => a.id)]);
+const latest = all.filter((a) => !shownIds.has(a.id)).sort(byDateDesc);
 ---
 
 <BaseLayout
@@ -31,11 +44,11 @@ const sections = primary ? resolveHomepage(primary.homepage, primary.features) :
   {primary && sections.map((id) => {
     if (id === 'hero') return <HeroSection game={primary} />;
     if (id === 'featured-guides')
-      return <ArticleRail game={primary} title="Featured Guides" articles={all.filter(a=>a.data.featured)} seeAllPath={sectionPath(site, primary,'guides')} />;
+      return <ArticleRail game={primary} title="Featured Guides" articles={featured} seeAllPath={sectionPath(site, primary, 'guides')} />;
     if (id === 'popular-guides')
-      return <ArticleRail game={primary} title="Popular Guides" articles={all.filter(a=>a.data.popular)} seeAllPath={sectionPath(site, primary,'guides')} />;
+      return <ArticleRail game={primary} title="Editor's Picks" articles={popular} seeAllPath={sectionPath(site, primary, 'guides')} />;
     if (id === 'latest-guides')
-      return <ArticleRail game={primary} title="Latest Guides" articles={all} seeAllPath={sectionPath(site, primary,'guides')} />;
+      return <ArticleRail game={primary} title="Latest Guides" articles={latest} seeAllPath={sectionPath(site, primary, 'guides')} />;
     if (id === 'categories') return <CategoryGrid game={primary} />;
     if (id === 'games') return <GamesDirectory />;
     return null;

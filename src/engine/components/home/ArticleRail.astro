@@ -8,24 +8,40 @@ interface Props {
   title: string;
   articles: Article[];
   seeAllPath?: string;
+  max?: number;
 }
-const { game, title, articles, seeAllPath } = Astro.props;
+const { game, title, articles, seeAllPath, max = 3 } = Astro.props;
+const shown = articles.slice(0, max);
 ---
 
 {
-  articles.length > 0 && (
+  shown.length > 0 && (
     <section class="section">
       <div class="container">
         <div class="section-head">
           <h2>{title}</h2>
           {seeAllPath && <a href={seeAllPath}>See all</a>}
         </div>
-        <div class="grid cols-3">
-          {articles.slice(0, 3).map((a) => (
-            <ArticleCard game={game} article={a} />
+        <div class="rail-grid">
+          {shown.map((a, i) => (
+            <ArticleCard game={game} article={a} eager={i === 0} />
           ))}
         </div>
       </div>
     </section>
   )
 }
+
+<style>
+  .rail-grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .rail-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 960px) {
+    .rail-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>

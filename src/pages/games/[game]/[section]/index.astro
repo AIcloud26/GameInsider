@@ -6,7 +6,7 @@ import ArticleCard from '@/engine/components/ArticleCard.astro';
 import AdSlot from '@/engine/components/AdSlot.astro';
 import { loadArticles } from '@/engine/content/query';
 import { breadcrumbSchema } from '@/engine/seo/jsonld';
-import { sectionPath } from '@/engine/routing/paths';
+import { sectionPath, withBase } from '@/engine/routing/paths';
 
 // URL section -> content category mapping lives in Core, not in game code.
 const sectionToCategory: Record<string, import('@/engine/content/query').Article['data']['category']> = {
@@ -57,7 +57,7 @@ const path = sectionPath(site, game, section);
 >
   <div class="container section">
     <nav class="crumbs muted" aria-label="Breadcrumb">
-      <a href="/">Home</a> <span>/</span>
+      <a href={withBase('/')}>Home</a> <span>/</span>
       <a href={sectionPath(site, game)}>{game.name}</a> <span>/</span>
       {categoryConfig?.label ?? section}
     </nav>

@@ -3,10 +3,10 @@ title: "Kingshot Best Heroes Guide: Who to Invest In First"
 description: "How to choose which Kingshot heroes to level first, with hero roles and priority based on the current meta."
 category: guides
 game: kingshot
-publishedAt: 2026-10-09
-updatedAt: 2026-10-09
-author: "GameAtlas Editorial"
-featured: true
+publishedAt: 2026-10-05
+updatedAt: 2026-10-06
+author: "GamesHub Editorial"
+featured: false
 popular: true
 verified: false
 sources:

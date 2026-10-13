@@ -3,9 +3,9 @@ title: "Kingshot Events Guide: Event Types & What to Prioritise"
 description: "How Kingshot limited-time events work and which rewards free-to-play players should prioritise."
 category: events
 game: kingshot
-publishedAt: 2026-10-09
-updatedAt: 2026-10-09
-author: "GameAtlas Editorial"
+publishedAt: 2026-10-08
+updatedAt: 2026-10-08
+author: "GamesHub Editorial"
 featured: false
 popular: false
 verified: false

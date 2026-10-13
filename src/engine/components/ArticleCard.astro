@@ -4,12 +4,14 @@ import type { GameConfig } from '@/engine/config/types';
 import type { Article } from '@/engine/content/query';
 import { categoryToSection } from '@/engine/content/query';
 import { articlePath } from '@/engine/routing/paths';
+import ArticleThumb from './ArticleThumb.astro';
 
 interface Props {
   game: GameConfig;
   article: Article;
+  eager?: boolean;
 }
-const { game, article } = Astro.props;
+const { game, article, eager = false } = Astro.props;
 const d = article.data;
 const section = categoryToSection(d.category);
 const path = articlePath(site, game, section, article.id);
@@ -18,23 +20,25 @@ const date = d.updatedAt.toLocaleDateString('en-US', {
   month: 'short',
   day: 'numeric',
 });
+const label = section.split('-').map((w) => w[0].toUpperCase() + w.slice(1)).join(' ');
 ---
 
-<a class="card" href={path}>
-  <div class="card-thumb" aria-hidden="true">
-    <span class="thumb-mark">◆</span>
+<a class="card" href={path} aria-label={d.title}>
+  <div class="card-thumb">
+    <ArticleThumb category={d.category} title={d.title} cover={d.cover} eager={eager} />
   </div>
   <div class="card-body">
     <span class="card-meta">
-      <span class="badge">{section.replace('-', ' ')}</span>
+      <span class="badge">{label}</span>
     </span>
     <span class="card-title">{d.title}</span>
     <p class="card-excerpt">{d.description}</p>
-    <span class="card-meta">Updated {date}</span>
+    <span class="card-meta card-date">
+      <time datetime={d.updatedAt.toISOString().slice(0, 10)}>Updated {date}</time>
+    </span>
   </div>
 </a>
 
 <style>
-  .thumb-mark { color: var(--primary); font-size: 1.6rem; opacity: .85; }
   a.card { text-decoration: none !important; }
 </style>

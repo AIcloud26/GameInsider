@@ -1,11 +1,11 @@
 ---
 import BaseLayout from '@/engine/layouts/BaseLayout.astro';
 const title = 'Search';
-const description = 'Search Kingshot and other mobile game guides on GameAtlas.';
+const description = 'Search Kingshot guides, codes, heroes and tier lists on GamesHub.';
 ---
 
 <BaseLayout
-  title={`${title} | GameAtlas`}
+  title={`${title} | GamesHub`}
   description={description}
   path="/search/"
 >
@@ -56,7 +56,9 @@ const description = 'Search Kingshot and other mobile game guides on GameAtlas.'
 
   async function load(): Promise<Doc[]> {
     if (docs.length) return docs;
-    const res = await fetch('/search-index.json');
+    const res = await fetch(
+      import.meta.env.BASE_URL.replace(/\/?$/, '/') + 'search-index.json',
+    );
     docs = await res.json();
     return docs;
   }

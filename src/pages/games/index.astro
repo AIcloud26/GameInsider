@@ -1,17 +1,18 @@
 ---
 import { site } from '@/sites';
 import { games } from '@/games';
-import { sectionPath } from '@/engine/routing/paths';
+import { sectionPath, withBase } from '@/engine/routing/paths';
+import { asset } from '@/engine/routing/assets';
 import BaseLayout from '@/engine/layouts/BaseLayout.astro';
 import { breadcrumbSchema } from '@/engine/seo/jsonld';
 
 const title = 'All Game Guides';
 const description =
-  'Browse all mobile game guides on GameAtlas — codes, tier lists, heroes and strategies.';
+  'Browse all mobile game guides on GamesHub — codes, tier lists, heroes and strategies.';
 ---
 
 <BaseLayout
-  title={`${title} | GameAtlas`}
+  title={`${title} | GamesHub`}
   description={description}
   path="/games/"
   jsonLd={breadcrumbSchema(site, [
@@ -21,14 +22,14 @@ const description =
 >
   <div class="container section">
     <nav class="crumbs muted" aria-label="Breadcrumb">
-      <a href="/">Home</a> <span>/</span> Games
+      <a href={withBase('/')}>Home</a> <span>/</span> Games
     </nav>
     <h1>All Game Guides</h1>
     <p class="muted">Choose a game to see its guides, codes, heroes and tier lists.</p>
     <div class="grid cols-2">
       {games.map((g) => (
         <a class="g-card" href={sectionPath(site, g)}>
-          <img src={g.icon} alt="" width="64" height="64" class="g-icon" />
+          <img src={asset(g.icon)} alt="" width="64" height="64" class="g-icon" loading="lazy" decoding="async" />
           <div>
             <span class="g-name">{g.name}</span>
             <span class="muted g-meta">{g.genres.join(' · ')}</span>

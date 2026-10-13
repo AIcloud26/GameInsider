@@ -1,7 +1,7 @@
 ---
 import { site } from '@/sites';
 import { games } from '@/games';
-import { sectionPath } from '@/engine/routing/paths';
+import { sectionPath, withBase } from '@/engine/routing/paths';
 
 const year = new Date().getFullYear();
 const legal = [
@@ -37,7 +37,7 @@ const legal = [
     <div>
       <h4>Site</h4>
       <ul>
-        {legal.map((l) => <li><a href={l.to}>{l.label}</a></li>)}
+        {legal.map((l) => <li><a href={withBase(l.to)}>{l.label}</a></li>)}
       </ul>
     </div>
   </div>

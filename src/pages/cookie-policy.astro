@@ -1,11 +1,12 @@
 ---
+import { withBase } from '@/engine/routing/paths';
 import BaseLayout from '@/engine/layouts/BaseLayout.astro';
 const title = 'Cookie Policy';
-const description = 'How GameAtlas uses cookies and similar technologies.';
+const description = 'How GamesHub uses cookies and similar technologies.';
 const updated = 'October 9, 2026';
 ---
 
-<BaseLayout title={`${title} | GameAtlas`} description={description} path="/cookie-policy/">
+<BaseLayout title={`${title} | GamesHub`} description={description} path="/cookie-policy/">
   <div class="container section legal">
     <h1>Cookie Policy</h1>
     <p class="muted">Last updated: {updated}</p>
@@ -24,6 +25,6 @@ const updated = 'October 9, 2026';
     <p>Most browsers let you block or delete cookies. Disabling them may affect some site features. You can also use available industry opt-out tools for personalised advertising.</p>
 
     <h2>Contact</h2>
-    <p>Questions about cookies can be sent via our <a href="/contact/">contact page</a>.</p>
+    <p>Questions about cookies can be sent via our <a href={withBase('/contact/')}>contact page</a>.</p>
   </div>
 </BaseLayout>

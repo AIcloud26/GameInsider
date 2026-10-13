@@ -1,0 +1,77 @@
+---
+/**
+ * Neutral, brand-consistent 16:9 illustrative cover. It is an abstract graphic
+ * keyed by content category, NOT a real game screenshot. Replace with licensed
+ * artwork later by setting `cover` on an article (this component prefers it).
+ */
+interface Props {
+  category: string;
+  title: string;
+  cover?: string;
+  eager?: boolean;
+}
+const { category, title, cover, eager = false } = Astro.props;
+
+// Each icon is drawn on a 24x24 grid so it scales cleanly to any size.
+const icons: Record<string, string> = {
+  guides:
+    'M5 4h11a2 2 0 0 1 2 2v14H7a2 2 0 0 0-2 2V4Zm0 0a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h13',
+  codes: 'm8 8-4 4 4 4M16 8l4 4-4 4M13 5l-2 14',
+  heroes:
+    'M12 3l2.2 4.6 5 .7-3.6 3.5.9 5L12 14.5 7.5 16.8l.9-5L4.8 8.3l5-.7L12 3Z',
+  'tier-lists': 'M4 6h16M4 12h16M4 18h10',
+  events: 'M12 4v3M6.5 6.5 8.5 8.5M17.5 6.5 15.5 8.5M7 18a5 5 0 1 1 10 0c0 1.5.5 2 .5 2H6.5S7 19.5 7 18ZM9.5 22h5',
+};
+const d = icons[category] ?? icons.guides;
+const gid = `tg-${category.replace(/[^a-z]/g, '')}`;
+---
+
+{
+  cover ? (
+    <img
+      class="thumb-img"
+      src={cover}
+      alt={title}
+      width="640"
+      height="360"
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+    />
+  ) : (
+    <svg
+      class="thumb-img"
+      viewBox="0 0 640 360"
+      width="640"
+      height="360"
+      role="img"
+      aria-label={title}
+      preserveAspectRatio="xMidYMid slice"
+    >
+      <defs>
+        <linearGradient id={gid} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#f59e0b" stop-opacity="0.20" />
+          <stop offset="1" stop-color="#38bdf8" stop-opacity="0.10" />
+        </linearGradient>
+        <radialGradient id={`${gid}-r`} cx="0.5" cy="0.42" r="0.7">
+          <stop offset="0" stop-color="#f59e0b" stop-opacity="0.16" />
+          <stop offset="1" stop-color="#f59e0b" stop-opacity="0" />
+        </radialGradient>
+      </defs>
+      <rect width="640" height="360" fill="#161e33" />
+      <rect width="640" height="360" fill={`url(#${gid})`} />
+      <rect width="640" height="360" fill={`url(#${gid}-r)`} />
+      <!-- centred 120x120 icon badge; 24-grid scaled x5 and translated -->
+      <g transform="translate(260,120) scale(5)">
+        <rect x="0" y="0" width="24" height="24" rx="5" fill="#0f1526" opacity="0.55" />
+        <path
+          d={d}
+          fill="none"
+          stroke="#f59e0b"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </g>
+    </svg>
+  )
+}
