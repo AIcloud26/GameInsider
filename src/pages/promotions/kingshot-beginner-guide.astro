@@ -1,0 +1,369 @@
+﻿---
+import BaseLayout from '@/engine/layouts/BaseLayout.astro';
+import { withBase } from '@/engine/routing/paths';
+
+const title = 'Kingshot Beginner Checklist: Build Better Habits';
+const description =
+  'A practical Kingshot beginner checklist for daily priorities, resource decisions, hero investment, and choosing your next guide.';
+const path = '/promotions/kingshot-beginner-guide/';
+---
+
+<BaseLayout title={title} description={description} path={path} type="article">
+  <article class="container promo">
+    <nav class="crumbs muted" aria-label="Breadcrumb">
+      <a href={withBase('/')}>Home</a>
+      <span>/</span>
+      <a href={withBase('/games/kingshot/')}>Kingshot</a>
+      <span>/</span>
+      <span>Beginner Checklist</span>
+    </nav>
+
+    <header class="hero">
+      <p class="eyebrow">KINGSHOT BEGINNER TOOLKIT</p>
+      <h1>{title}</h1>
+      <p class="lead">
+        A simple decision checklist for keeping your early progress organised.
+        Use it to review your next task, protect limited resources, and decide
+        which guide to read when you need more detail.
+      </p>
+      <a class="cta" href={withBase('/games/kingshot/guides/beginner-guide/')}>
+        Read the Complete Beginner Guide
+      </a>
+    </header>
+
+    <section aria-labelledby="daily-heading">
+      <p class="section-label">CHECKLIST 01</p>
+      <h2 id="daily-heading">Before you finish a play session</h2>
+      <p>
+        Use these prompts as a quick review. The available tasks and systems
+        depend on your current progress and the game's current version.
+      </p>
+      <ul class="checklist">
+        <li>
+          <span class="check" aria-hidden="true">□</span>
+          <div>
+            <strong>Review your current objectives.</strong>
+            <p>Check the tutorial, chapter tasks, quests, and any goals you are actively pursuing.</p>
+          </div>
+        </li>
+        <li>
+          <span class="check" aria-hidden="true">□</span>
+          <div>
+            <strong>Check ongoing upgrades.</strong>
+            <p>Review available building or research timers and choose the next task based on your current needs.</p>
+          </div>
+        </li>
+        <li>
+          <span class="check" aria-hidden="true">□</span>
+          <div>
+            <strong>Review your resource balance.</strong>
+            <p>Identify which resources you need for your next planned upgrade before spending them elsewhere.</p>
+          </div>
+        </li>
+        <li>
+          <span class="check" aria-hidden="true">□</span>
+          <div>
+            <strong>Check unlocked activities.</strong>
+            <p>Review available missions, alliance activities, and event objectives without assuming every activity is available at every stage.</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="resources-heading">
+      <p class="section-label">CHECKLIST 02</p>
+      <h2 id="resources-heading">Before spending scarce resources</h2>
+      <p>
+        Pause before using premium currency, speed-ups, or limited upgrade
+        materials. Answer these questions first.
+      </p>
+      <ol class="decision-list">
+        <li>
+          <strong>What does this action unlock?</strong>
+          Identify the immediate benefit and whether it supports a current goal.
+        </li>
+        <li>
+          <strong>Will I need these items soon?</strong>
+          Check the requirements for your next planned upgrade or activity.
+        </li>
+        <li>
+          <strong>Is there a time-sensitive objective?</strong>
+          Read the current in-game event rules and rewards before deciding to save or spend.
+        </li>
+        <li>
+          <strong>Can I wait without losing meaningful progress?</strong>
+          Compare the benefit of acting now with the value of keeping your options open.
+        </li>
+      </ol>
+      <p class="note">
+        There is no universal spending order for every account. Your progression,
+        available items, and current game rules should guide the decision.
+      </p>
+    </section>
+
+    <section aria-labelledby="heroes-heading">
+      <p class="section-label">CHECKLIST 03</p>
+      <h2 id="heroes-heading">Keep hero investment focused</h2>
+      <ul class="checklist">
+        <li>
+          <span class="check" aria-hidden="true">□</span>
+          <div>
+            <strong>Review the heroes you actually use.</strong>
+            <p>Consider your current lineup and the content you want to complete.</p>
+          </div>
+        </li>
+        <li>
+          <span class="check" aria-hidden="true">□</span>
+          <div>
+            <strong>Check upgrade costs before committing.</strong>
+            <p>Compare the materials required with the other upgrades you have planned.</p>
+          </div>
+        </li>
+        <li>
+          <span class="check" aria-hidden="true">□</span>
+          <div>
+            <strong>Research before changing your lineup.</strong>
+            <p>Use the hero and formation guides as starting points, then confirm details in your current game version.</p>
+          </div>
+        </li>
+      </ul>
+      <div class="link-grid">
+        <a class="guide-link" href={withBase('/games/kingshot/guides/best-heroes/')}>
+          <span class="link-kicker">HERO RESEARCH</span>
+          <strong>Best Heroes Guide</strong>
+          <span>Review hero choices and investment priorities.</span>
+        </a>
+        <a class="guide-link" href={withBase('/games/kingshot/guides/best-formation/')}>
+          <span class="link-kicker">TEAM SETUP</span>
+          <strong>Best Formation Guide</strong>
+          <span>Explore formation choices for your lineup.</span>
+        </a>
+      </div>
+    </section>
+
+    <section aria-labelledby="mistakes-heading">
+      <p class="section-label">CHECKLIST 04</p>
+      <h2 id="mistakes-heading">Common decisions worth reviewing</h2>
+      <ul class="review-list">
+        <li>Spreading limited upgrade materials across more heroes than you can actively develop.</li>
+        <li>Using speed-ups without checking whether the time saved supports a meaningful goal.</li>
+        <li>Starting an upgrade without checking the requirements for the next planned step.</li>
+        <li>Following an old event recommendation without checking the current rules and rewards.</li>
+        <li>Treating a tier list as an absolute answer instead of considering your own lineup and available resources.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="next-heading" class="next">
+      <p class="section-label">YOUR NEXT STEP</p>
+      <h2 id="next-heading">Choose a guide for your current goal</h2>
+      <div class="next-links">
+        <a href={withBase('/games/kingshot/guides/beginner-guide/')}>
+          <strong>Beginner Guide</strong>
+          <span>Understand early progression and common mistakes.</span>
+        </a>
+        <a href={withBase('/games/kingshot/tier-list/')}>
+          <strong>Hero Tier List</strong>
+          <span>Review the available tier-list reference.</span>
+        </a>
+        <a href={withBase('/games/kingshot/codes/')}>
+          <strong>Gift Codes</strong>
+          <span>Check the game's code page for current information.</span>
+        </a>
+        <a href={withBase('/games/kingshot/events/')}>
+          <strong>Events</strong>
+          <span>Review event-related guides and information.</span>
+        </a>
+      </div>
+      <a class="cta" href={withBase('/games/kingshot/guides/beginner-guide/')}>
+        Continue to the Complete Beginner Guide
+      </a>
+    </section>
+
+    <p class="disclaimer muted">
+      This independent guide is not an official game announcement. Features,
+      requirements, rewards, and event rules may change. Confirm time-sensitive
+      details in the current game before making decisions.
+    </p>
+  </article>
+</BaseLayout>
+
+<style>
+  .promo {
+    max-width: 860px;
+    padding-top: 24px;
+    padding-bottom: 64px;
+  }
+
+  .crumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+    font-size: .88rem;
+  }
+
+  .hero {
+    padding: 28px 0 36px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .eyebrow,
+  .section-label {
+    font-size: .78rem;
+    letter-spacing: .12em;
+    color: var(--text-muted);
+  }
+
+  h1 {
+    max-width: 780px;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    line-height: 1.12;
+  }
+
+  .lead {
+    max-width: 66ch;
+    font-size: 1.12rem;
+    line-height: 1.75;
+    color: var(--text-muted);
+  }
+
+  section {
+    padding: 24px 0;
+  }
+
+  section > p:not(.section-label) {
+    max-width: 72ch;
+    line-height: 1.8;
+  }
+
+  .checklist,
+  .review-list {
+    display: grid;
+    gap: 14px;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .checklist li {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 12px;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+
+  .check {
+    font-size: 1.3rem;
+    line-height: 1.4;
+    color: var(--text-muted);
+  }
+
+  .checklist strong,
+  .decision-list strong {
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .checklist p {
+    margin: 0;
+    line-height: 1.7;
+    color: var(--text-muted);
+  }
+
+  .decision-list {
+    display: grid;
+    gap: 14px;
+    padding-left: 24px;
+    line-height: 1.75;
+  }
+
+  .decision-list li {
+    padding-left: 4px;
+  }
+
+  .note {
+    padding: 16px;
+    border-left: 3px solid var(--border);
+    background: var(--surface, transparent);
+  }
+
+  .link-grid,
+  .next-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 20px;
+  }
+
+  .guide-link,
+  .next-links a {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 18px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .guide-link:hover,
+  .next-links a:hover {
+    border-color: var(--accent, #6d5efc);
+  }
+
+  .link-kicker {
+    font-size: .72rem;
+    letter-spacing: .1em;
+    color: var(--text-muted);
+  }
+
+  .guide-link > span:last-child,
+  .next-links a > span {
+    font-size: .92rem;
+    line-height: 1.65;
+    color: var(--text-muted);
+  }
+
+  .review-list {
+    padding-left: 22px;
+    list-style: disc;
+    line-height: 1.8;
+  }
+
+  .next {
+    margin-top: 16px;
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+  }
+
+  .cta {
+    display: inline-flex;
+    margin-top: 16px;
+    padding: 12px 18px;
+    border-radius: 10px;
+    background: var(--accent, #6d5efc);
+    color: white;
+    font-weight: 650;
+    text-decoration: none;
+  }
+
+  .disclaimer {
+    margin-top: 24px;
+    font-size: .86rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 600px) {
+    .link-grid,
+    .next-links {
+      grid-template-columns: 1fr;
+    }
+
+    .next {
+      padding: 18px;
+    }
+  }
+</style>
