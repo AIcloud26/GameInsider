@@ -10,7 +10,7 @@ const articleSchema = z.object({
   excerpt: z.string().optional(),
   publishedAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
-  author: z.string().default('GameAtlas Editorial'),
+  author: z.string().default('GameInsider Editorial'),
   readingTime: z.number().optional(),
   featured: z.boolean().default(false),
   popular: z.boolean().default(false),

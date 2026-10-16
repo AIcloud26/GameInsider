@@ -30,9 +30,9 @@ const hubLinks = [
       <img
         class="brand-logo"
         src={asset('/games/kingshot/assets/images/logo.svg')}
-        alt="GameInsider"
-        width="140"
-        height="32"
+        alt=""
+        width="193"
+        height="44"
         decoding="async"
       />
     </a>
@@ -84,17 +84,22 @@ const hubLinks = [
   .brand {
     display: flex;
     align-items: center;
-    gap: 9px;
     text-decoration: none !important;
-    flex-shrink: 0;
+    flex: 0 1 auto;
+    min-width: 0;
+    max-width: calc(100% - 52px);
   }
 
   .brand-logo {
     display: block;
-    width: 140px;
-    height: 32px;
+    width: auto;
+    height: 38px;
+    max-width: 100%;
+    max-height: calc(var(--header-h) - 16px);
+    aspect-ratio: 280 / 64;
     flex: none;
     object-fit: contain;
+    object-position: left center;
   }
 
   .primary-nav {
@@ -128,6 +133,7 @@ const hubLinks = [
     border-radius: var(--radius-sm);
     padding: 8px;
     cursor: pointer;
+    flex-shrink: 0;
   }
 
   .nav-toggle span {
@@ -137,6 +143,15 @@ const hubLinks = [
   }
 
   @media (min-width: 860px) {
+    .brand {
+      max-width: none;
+      flex-shrink: 0;
+    }
+
+    .brand-logo {
+      height: 44px;
+    }
+
     .nav-toggle {
       display: none;
     }

@@ -8,7 +8,7 @@ export function websiteSchema(site: SiteConfig) {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: site.siteName,
-    url: `https://${site.domain}/`,
+    url: absoluteUrl(site, '/'),
   };
 }
 

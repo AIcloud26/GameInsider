@@ -2,9 +2,10 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import { site } from './src/sites/index.ts';
 
-// The configured domain drives canonical/sitemap. The deploy target sets:
-//   PUBLIC_DOMAIN  -> host (e.g. aicloud26.github.io)
-//   PUBLIC_BASE    -> project sub-path (e.g. /GameInsider), "/" for a root domain
+// The configured domain drives canonical/sitemap. Production (GitHub Actions) sets:
+//   PUBLIC_DOMAIN=gameinsider.space
+//   PUBLIC_BASE=/
+// Other hosts/sub-paths can still be supplied the same way at build time.
 // Per-site content builds are still selected with SITE=<id>.
 const BASE = (process.env.PUBLIC_BASE || '/').replace(/\/+$/, '');
 

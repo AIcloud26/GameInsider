@@ -4,8 +4,8 @@ import type { SiteConfig } from '@/engine/config/types';
  * GameInsider production site. Kingshot is the launch game; the engine is kept
  * game-agnostic so more titles can be added via config + content only.
  *
- * Production deployment: GitHub Pages project site
- *   https://gameinsider.space/  (host + base set at build time)
+ * Production deployment: custom domain on GitHub Pages (site root)
+ *   https://gameinsider.space/  (PUBLIC_DOMAIN + PUBLIC_BASE set at build time)
  *
  * Domains/ads/analytics are config-only and contain no fabricated ids.
  */
