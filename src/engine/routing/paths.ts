@@ -4,7 +4,7 @@ import type { GameConfig } from '@/engine/config/types';
 /**
  * Deployment sub-path. Astro exposes the configured `base` at build time as
  * `import.meta.env.BASE_URL` (always ends with "/", "/" when served from root).
- * Used so every internal href works both at "/" and under "/GamesHub/".
+ * Used so every internal href works both at "/" and under "/GameInsider/".
  */
 export const BASE: string = import.meta.env.BASE_URL.replace(/\/+$/, '');
 

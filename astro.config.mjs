@@ -4,7 +4,7 @@ import { site } from './src/sites/index.ts';
 
 // The configured domain drives canonical/sitemap. The deploy target sets:
 //   PUBLIC_DOMAIN  -> host (e.g. aicloud26.github.io)
-//   PUBLIC_BASE    -> project sub-path (e.g. /GamesHub), "/" for a root domain
+//   PUBLIC_BASE    -> project sub-path (e.g. /GameInsider), "/" for a root domain
 // Per-site content builds are still selected with SITE=<id>.
 const BASE = (process.env.PUBLIC_BASE || '/').replace(/\/+$/, '');
 

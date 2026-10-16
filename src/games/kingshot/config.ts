@@ -93,7 +93,7 @@ export const kingshot: GameConfig = {
     'games',
   ],
   seo: {
-    titleTemplate: '{title} | GamesHub',
+    titleTemplate: '{title} | GameInsider',
     descriptionTemplate: '{description}',
   },
   social: {
