@@ -7,9 +7,9 @@ import { asset } from '@/engine/routing/assets';
 interface Props {
   game?: GameConfig;
 }
+
 const { game } = Astro.props;
 
-// Game-scoped nav is generated from navigation + feature flags only.
 const gameNav = game
   ? game.navigation.filter(
       (n) => !n.feature || game.features[n.feature],
@@ -72,6 +72,7 @@ const hubLinks = [
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border);
   }
+
   .header-inner {
     display: flex;
     align-items: center;
@@ -79,20 +80,44 @@ const hubLinks = [
     height: var(--header-h);
     gap: 12px;
   }
-  .brand { display: flex; align-items: center; gap: 8px; text-decoration: none !important; }
-  .brand-logo { display: block; width: 140px; height: 32px; object-fit: contain; }
-  .brand-mark { color: var(--primary); font-size: 1.1rem; }
-  .brand-name { font-weight: 800; color: var(--text); letter-spacing: .3px; }
 
-  .primary-nav { display: none; flex-direction: column; gap: 4px; }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    text-decoration: none !important;
+    flex-shrink: 0;
+  }
+
+  .brand-logo {
+    display: block;
+    width: 140px;
+    height: 32px;
+    flex: none;
+    object-fit: contain;
+  }
+
+  .primary-nav {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+  }
+
   .primary-nav a {
     color: var(--text);
     padding: 8px 10px;
     border-radius: var(--radius-sm);
     font-weight: 600;
   }
-  .primary-nav a:hover { background: var(--surface-2); text-decoration: none; }
-  .nav-more { color: var(--accent) !important; }
+
+  .primary-nav a:hover {
+    background: var(--surface-2);
+    text-decoration: none;
+  }
+
+  .nav-more {
+    color: var(--accent) !important;
+  }
 
   .nav-toggle {
     display: flex;
@@ -104,20 +129,35 @@ const hubLinks = [
     padding: 8px;
     cursor: pointer;
   }
-  .nav-toggle span { width: 20px; height: 2px; background: var(--text); }
+
+  .nav-toggle span {
+    width: 20px;
+    height: 2px;
+    background: var(--text);
+  }
 
   @media (min-width: 860px) {
-    .nav-toggle { display: none; }
-    .primary-nav { display: flex !important; flex-direction: row; align-items: center; gap: 2px; }
+    .nav-toggle {
+      display: none;
+    }
+
+    .primary-nav {
+      display: flex !important;
+      flex-direction: row;
+      align-items: center;
+      gap: 2px;
+    }
   }
 </style>
 
 <script>
   const btn = document.querySelector<HTMLButtonElement>('.nav-toggle');
   const nav = document.querySelector<HTMLElement>('#primary-nav');
+
   if (btn && nav) {
     btn.addEventListener('click', () => {
       const open = btn.getAttribute('aria-expanded') === 'true';
+
       btn.setAttribute('aria-expanded', String(!open));
       nav.style.display = open ? '' : 'flex';
     });

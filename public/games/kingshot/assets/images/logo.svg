@@ -1,4 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" width="280" height="64" role="img" aria-label="GameInsider logo mark">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" width="280" height="64" role="img" aria-label="GameInsider logo">
   <rect x="6" y="14" width="36" height="36" rx="9" fill="#121829" stroke="#2a3550" stroke-width="2"/>
   <path d="M16 40V25l8 6 8-6v15" fill="none" stroke="#f59e0b" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="54" y="42" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="27" font-weight="800" letter-spacing="-0.8">
+    <tspan fill="#f8fafc">Game</tspan><tspan fill="#f59e0b">Insider</tspan>
+  </text>
 </svg>
