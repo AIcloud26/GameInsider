@@ -1,17 +1,17 @@
 import type { SiteConfig } from '@/engine/config/types';
 
 /**
- * GamesHub production site. Kingshot is the launch game; the engine is kept
+ * GameInsider production site. Kingshot is the launch game; the engine is kept
  * game-agnostic so more titles can be added via config + content only.
  *
  * Production deployment: GitHub Pages project site
- *   https://aicloud26.github.io/GamesHub/  (host + base set at build time)
+ *   https://aicloud26.github.io/GameInsider/  (host + base set at build time)
  *
  * Domains/ads/analytics are config-only and contain no fabricated ids.
  */
 export const gameatlas: SiteConfig = {
-  id: 'gameshub',
-  siteName: 'GamesHub',
+  id: 'GameInsider',
+  siteName: 'GameInsider',
   domain: process.env.PUBLIC_DOMAIN ?? 'aicloud26.github.io',
   mode: 'hub',
   primaryGame: 'kingshot',
@@ -21,11 +21,10 @@ export const gameatlas: SiteConfig = {
   showGamesDirectory: true,
   showMultiGameNavigation: true,
   seo: {
-    defaultTitle:
-      'GamesHub — Kingshot Guides, Gift Codes, Tier Lists & Strategies',
+    defaultTitle: 'GameInsider — Kingshot Guides, Gift Codes, Tier Lists & Strategies',
     defaultDescription:
       'Trusted Kingshot guides, redeem codes, hero tier lists, formations and event strategies for mobile players. Mobile-first and kept up to date.',
-    titleTemplate: '%s | GamesHub',
+    titleTemplate: '%s | GameInsider',
   },
   ads: {
     enabled: false,

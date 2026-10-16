@@ -5,7 +5,7 @@ category: events
 game: kingshot
 publishedAt: 2026-10-08
 updatedAt: 2026-10-08
-author: "GamesHub Editorial"
+author: "GameInsider Editorial"
 featured: false
 popular: false
 verified: false

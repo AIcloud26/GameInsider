@@ -1,8 +1,8 @@
-﻿import type { SiteConfig } from '@/engine/config/types';
+import type { SiteConfig } from '@/engine/config/types';
 import type { GameConfig } from '@/engine/config/types';
 
 /**
- * Deployment sub-path, such as "/GamesHub".
+ * Deployment sub-path, such as "/GameInsider".
  */
 export const BASE: string = import.meta.env.BASE_URL.replace(/\/+$/, '');
 

@@ -1,4 +1,4 @@
-﻿name: Deploy Astro site to GitHub Pages
+name: Deploy Astro site to GitHub Pages
 
 on:
   push:
@@ -30,7 +30,7 @@ jobs:
       - run: npm run build:fast
         env:
           PUBLIC_DOMAIN: ${{ github.repository_owner }}.github.io
-          PUBLIC_BASE: /GamesHub
+          PUBLIC_BASE: /GameInsider
 
       - uses: actions/upload-pages-artifact@v3
         with:
