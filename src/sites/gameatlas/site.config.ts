@@ -5,14 +5,14 @@ import type { SiteConfig } from '@/engine/config/types';
  * game-agnostic so more titles can be added via config + content only.
  *
  * Production deployment: GitHub Pages project site
- *   https://aicloud26.github.io/GameInsider/  (host + base set at build time)
+ *   https://gameinsider.space/  (host + base set at build time)
  *
  * Domains/ads/analytics are config-only and contain no fabricated ids.
  */
 export const gameatlas: SiteConfig = {
   id: 'gameinsider',
   siteName: 'GameInsider',
-  domain: process.env.PUBLIC_DOMAIN ?? 'aicloud26.github.io',
+  domain: process.env.PUBLIC_DOMAIN ?? 'gameinsider.space',
   mode: 'hub',
   primaryGame: 'kingshot',
   games: ['kingshot'],

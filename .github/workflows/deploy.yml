@@ -17,6 +17,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
@@ -27,13 +28,13 @@ jobs:
 
       - run: npm ci
         env:
-          PUBLIC_DOMAIN: ${{ github.repository_owner }}.github.io
-          PUBLIC_BASE: /GameInsider
+          PUBLIC_DOMAIN: gameinsider.space
+          PUBLIC_BASE: /
 
       - run: npm run build:fast
         env:
-          PUBLIC_DOMAIN: ${{ github.repository_owner }}.github.io
-          PUBLIC_BASE: /GameInsider
+          PUBLIC_DOMAIN: gameinsider.space
+          PUBLIC_BASE: /
 
       - uses: actions/upload-pages-artifact@v3
         with:
@@ -42,6 +43,7 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

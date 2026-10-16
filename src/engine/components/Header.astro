@@ -2,6 +2,7 @@
 import { site } from '@/sites';
 import type { GameConfig } from '@/engine/config/types';
 import { sectionPath, withBase } from '@/engine/routing/paths';
+import { asset } from '@/engine/routing/assets';
 
 interface Props {
   game?: GameConfig;
@@ -26,8 +27,14 @@ const hubLinks = [
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href={withBase('/')} aria-label={`${site.siteName} home`}>
-      <span class="brand-mark" aria-hidden="true">◆</span>
-      <span class="brand-name">{site.siteName}</span>
+      <img
+        class="brand-logo"
+        src={asset('/games/kingshot/assets/images/logo.svg')}
+        alt="GameInsider"
+        width="140"
+        height="32"
+        decoding="async"
+      />
     </a>
 
     <button
@@ -73,6 +80,7 @@ const hubLinks = [
     gap: 12px;
   }
   .brand { display: flex; align-items: center; gap: 8px; text-decoration: none !important; }
+  .brand-logo { display: block; width: 140px; height: 32px; object-fit: contain; }
   .brand-mark { color: var(--primary); font-size: 1.1rem; }
   .brand-name { font-weight: 800; color: var(--text); letter-spacing: .3px; }
 
