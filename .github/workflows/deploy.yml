@@ -19,19 +19,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
-
       - run: npm ci
-
+        env:
+          PUBLIC_DOMAIN: ${{ github.repository_owner }}.github.io
       - run: npm run build:fast
         env:
           PUBLIC_DOMAIN: ${{ github.repository_owner }}.github.io
-          PUBLIC_BASE: /GameInsider
-
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist

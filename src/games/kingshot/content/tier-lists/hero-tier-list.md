@@ -5,7 +5,7 @@ category: tier-lists
 game: kingshot
 publishedAt: 2026-10-06
 updatedAt: 2026-10-06
-author: "GameInsider Editorial"
+author: "GamesHub Editorial"
 featured: false
 popular: true
 verified: false

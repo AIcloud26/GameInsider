@@ -5,7 +5,7 @@ category: codes
 game: kingshot
 publishedAt: 2026-10-09
 updatedAt: 2026-10-09
-author: "GameInsider Editorial"
+author: "GamesHub Editorial"
 featured: true
 popular: false
 verified: false

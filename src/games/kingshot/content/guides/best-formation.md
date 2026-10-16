@@ -5,7 +5,7 @@ category: guides
 game: kingshot
 publishedAt: 2026-10-04
 updatedAt: 2026-10-07
-author: "GameInsider Editorial"
+author: "GamesHub Editorial"
 featured: true
 popular: false
 verified: false

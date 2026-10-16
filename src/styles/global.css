@@ -150,7 +150,7 @@ p { margin: 0 0 1em; }
 .legal { max-width:800px; }
 .legal h2 { margin-top:1.8em; }
 
-/* ===== GameInsider polish pass ===== */
+/* ===== GamesHub polish pass ===== */
 :root { --focus: var(--accent); }
 
 /* Consistent cover rendering */
@@ -204,42 +204,5 @@ img, svg { max-width: 100%; }
     animation-duration: .001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: .001ms !important;
-  }
-}
-
-/* Article sources and responsive navigation */
-.article-sources {
-  margin-top: 2rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--border);
-  overflow-wrap: anywhere;
-}
-
-.article-sources h2 {
-  margin: 0 0 0.75rem;
-  font-size: 1.2rem;
-}
-
-.article-sources ol {
-  margin: 0;
-  padding-left: 1.4rem;
-}
-
-.article-sources li {
-  margin-bottom: 0.55rem;
-  line-height: 1.6;
-}
-
-.article-sources a {
-  overflow-wrap: anywhere;
-}
-
-@media (max-width: 600px) {
-  .prevnext {
-    grid-template-columns: 1fr;
-  }
-
-  .pn-right {
-    text-align: left;
   }
 }

@@ -5,7 +5,7 @@ category: heroes
 game: kingshot
 publishedAt: 2026-10-07
 updatedAt: 2026-10-07
-author: "GameInsider Editorial"
+author: "GamesHub Editorial"
 featured: false
 popular: true
 verified: false
