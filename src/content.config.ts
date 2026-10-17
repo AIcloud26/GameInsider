@@ -9,6 +9,7 @@ const articleSchema = z.object({
   game: z.string(),
   excerpt: z.string().optional(),
   cover: z.string().optional(),
+  thumbnailTheme: z.enum(['guide', 'building', 'heroes', 'formation', 'resources', 'codes', 'events', 'tiers', 'battle', 'alliance']).optional(),
   publishedAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
   author: z.string().default('GameInsider Editorial'),

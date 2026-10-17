@@ -1,29 +1,85 @@
 ---
-/**
- * Neutral, brand-consistent 16:9 illustrative cover. It is an abstract graphic
- * keyed by content category, NOT a real game screenshot. Replace with licensed
- * artwork later by setting `cover` on an article (this component prefers it).
- */
 interface Props {
   category: string;
   title: string;
   cover?: string;
+  thumbnailTheme?: string;
   eager?: boolean;
 }
-const { category, title, cover, eager = false } = Astro.props;
 
-// Each icon is drawn on a 24x24 grid so it scales cleanly to any size.
-const icons: Record<string, string> = {
-  guides:
-    'M5 4h11a2 2 0 0 1 2 2v14H7a2 2 0 0 0-2 2V4Zm0 0a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h13',
-  codes: 'm8 8-4 4 4 4M16 8l4 4-4 4M13 5l-2 14',
-  heroes:
-    'M12 3l2.2 4.6 5 .7-3.6 3.5.9 5L12 14.5 7.5 16.8l.9-5L4.8 8.3l5-.7L12 3Z',
-  'tier-lists': 'M4 6h16M4 12h16M4 18h10',
-  events: 'M12 4v3M6.5 6.5 8.5 8.5M17.5 6.5 15.5 8.5M7 18a5 5 0 1 1 10 0c0 1.5.5 2 .5 2H6.5S7 19.5 7 18ZM9.5 22h5',
+const { category, title, cover, thumbnailTheme, eager = false } = Astro.props;
+
+const text = `${category} ${title}`.toLowerCase();
+
+const allowedThemes = new Set([
+  'guide', 'building', 'heroes', 'formation', 'resources',
+  'codes', 'events', 'tiers', 'battle', 'alliance'
+]);
+
+let kind = 'guide';
+
+if (thumbnailTheme && allowedThemes.has(thumbnailTheme)) {
+  kind = thumbnailTheme;
+} else if (/alliance|guild|join a clan|rally/.test(text)) {
+  kind = 'alliance';
+} else if (/tier|ranking|rank list|best heroes/.test(text)) {
+  kind = 'tiers';
+} else if (/code|redeem|gift|coupon/.test(text)) {
+  kind = 'codes';
+} else if (/event|season|festival|update|patch|reward/.test(text)) {
+  kind = 'events';
+} else if (/resource|food|wood|iron|stone|gather|economy/.test(text)) {
+  kind = 'resources';
+} else if (/formation|lineup|team comp|squad|troop composition/.test(text)) {
+  kind = 'formation';
+} else if (/hero|heroes|character|champion/.test(text)) {
+  kind = 'heroes';
+} else if (/battle|combat|warfare|pvp|pve|troops|march|defense|attack/.test(text)) {
+  kind = 'battle';
+} else if (/building|upgrade|castle|city hall|construction|headquarters/.test(text)) {
+  kind = 'building';
+}
+const themes: Record<string, { a: string; b: string; c: string; icon: string }> = {
+  guide: {
+    a: '#172554', b: '#2563eb', c: '#93c5fd',
+    icon: 'M6 4h9a3 3 0 0 1 3 3v13H8a3 3 0 0 0-3 2V4Zm0 0a3 3 0 0 0-3 3v13a3 3 0 0 1 3-3h12M9 9h5M9 13h6'
+  },
+  building: {
+    a: '#3b1d18', b: '#b45309', c: '#fcd34d',
+    icon: 'M3 21V9l5 3V8l5 4V5l3-2 3 2v16H3Zm5 0v-5h4v5m3-11h1m-1 4h1'
+  },
+  heroes: {
+    a: '#3b0764', b: '#9333ea', c: '#e9d5ff',
+    icon: 'M12 2 15 7l6 1-4 5 1 7-6-3-6 3 1-7-4-5 6-1 3-5Zm-3 11 3 2 3-2'
+  },
+  formation: {
+    a: '#082f49', b: '#0891b2', c: '#a5f3fc',
+    icon: 'M12 3 15 7l-3 3-3-3 3-4ZM5 11l3 3-3 3-3-3 3-3Zm14 0 3 3-3 3-3-3 3-3ZM12 14l4 4-4 4-4-4 4-4ZM8 14h8M12 10v4'
+  },
+  resources: {
+    a: '#064e3b', b: '#059669', c: '#a7f3d0',
+    icon: 'M12 2 20 7v10l-8 5-8-5V7l8-5Zm0 0v10m8-5-8 5-8-5m8 5v10'
+  },
+  codes: {
+    a: '#4a1942', b: '#db2777', c: '#fbcfe8',
+    icon: 'M4 9V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4l-3 3 3 3v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-4l3-3-3-3Zm5-2h.01M15 17h.01M9 16l6-8'
+  },
+  events: {
+    a: '#422006', b: '#ea580c', c: '#fed7aa',
+    icon: 'M12 3v4m0 10v4M3 12h4m10 0h4M5.6 5.6l2.8 2.8m7.2 7.2 2.8 2.8m0-12.8-2.8 2.8m-7.2 7.2-2.8 2.8M12 8l4 4-4 4-4-4 4-4Z'
+  },
+  tiers: {
+    a: '#312e81', b: '#6366f1', c: '#c7d2fe',
+    icon: 'M4 20h16M6 16h3v4H6v-4Zm5-6h3v10h-3V10Zm5-6h3v16h-3V4ZM5 8l4-3 4 2 6-5'
+  },
+  battle: {
+    a: '#450a0a', b: '#dc2626', c: '#fecaca',
+    icon: 'M5 3l6 6-2 2-6-6V3h2Zm14 0-6 6 2 2 6-6V3h-2ZM9 11l6 6-3 4-7-7 4-3Zm6-2 4 4-7 7-3-4 6-7Z'
+  }
 };
-const d = icons[category] ?? icons.guides;
-const gid = `tg-${category.replace(/[^a-z]/g, '')}`;
+
+const theme = themes[kind] ?? themes.guide;
+const gid = `thumb-${kind}-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 35)}`;
 ---
 
 {
@@ -39,7 +95,7 @@ const gid = `tg-${category.replace(/[^a-z]/g, '')}`;
     />
   ) : (
     <svg
-      class="thumb-img"
+      class="thumb-img thumb-art"
       viewBox="0 0 640 360"
       width="640"
       height="360"
@@ -48,30 +104,62 @@ const gid = `tg-${category.replace(/[^a-z]/g, '')}`;
       preserveAspectRatio="xMidYMid slice"
     >
       <defs>
-        <linearGradient id={gid} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#f59e0b" stop-opacity="0.20" />
-          <stop offset="1" stop-color="#38bdf8" stop-opacity="0.10" />
+        <linearGradient id={`${gid}-bg`} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color={theme.a} />
+          <stop offset="100%" stop-color={theme.b} />
         </linearGradient>
-        <radialGradient id={`${gid}-r`} cx="0.5" cy="0.42" r="0.7">
-          <stop offset="0" stop-color="#f59e0b" stop-opacity="0.16" />
-          <stop offset="1" stop-color="#f59e0b" stop-opacity="0" />
+        <radialGradient id={`${gid}-glow`} cx="75%" cy="42%" r="70%">
+          <stop offset="0%" stop-color={theme.c} stop-opacity=".42" />
+          <stop offset="100%" stop-color={theme.c} stop-opacity="0" />
         </radialGradient>
+        <pattern id={`${gid}-grid`} width="28" height="28" patternUnits="userSpaceOnUse">
+          <path d="M28 0H0V28" fill="none" stroke={theme.c} stroke-opacity=".10" stroke-width="1" />
+        </pattern>
       </defs>
-      <rect width="640" height="360" fill="#161e33" />
-      <rect width="640" height="360" fill={`url(#${gid})`} />
-      <rect width="640" height="360" fill={`url(#${gid}-r)`} />
-      <!-- centred 120x120 icon badge; 24-grid scaled x5 and translated -->
-      <g transform="translate(260,120) scale(5)">
-        <rect x="0" y="0" width="24" height="24" rx="5" fill="#0f1526" opacity="0.55" />
+
+      <rect width="640" height="360" fill={`url(#${gid}-bg)`} />
+      <rect width="640" height="360" fill={`url(#${gid}-glow)`} />
+      <rect width="640" height="360" fill={`url(#${gid}-grid)`} />
+
+      <circle cx="490" cy="170" r="126" fill={theme.c} opacity=".06" />
+      <circle cx="490" cy="170" r="98" fill="none" stroke={theme.c} stroke-opacity=".18" stroke-width="2" />
+      <circle cx="490" cy="170" r="76" fill="none" stroke={theme.c} stroke-opacity=".14" stroke-width="1.5" stroke-dasharray="5 10" />
+
+      <path d="M0 300 160 205 270 270 390 150 520 245 640 175V360H0Z" fill="#080d1c" opacity=".22" />
+      <path d="M0 325 170 260 290 305 430 220 550 280 640 240V360H0Z" fill="#080d1c" opacity=".24" />
+
+      <g transform="translate(250 92) scale(5.4)">
+        <rect x="-5" y="-5" width="34" height="34" rx="8" fill="#080d1c" opacity=".30" />
         <path
-          d={d}
+          d={theme.icon}
           fill="none"
-          stroke="#f59e0b"
-          stroke-width="1.7"
+          stroke={theme.c}
+          stroke-width="1.35"
           stroke-linecap="round"
           stroke-linejoin="round"
         />
       </g>
+
+      <path d="M36 38h42M36 38v42M604 322h-42M604 322v-42" stroke={theme.c} stroke-opacity=".6" stroke-width="2" fill="none" />
+      <circle cx="70" cy="290" r="3" fill={theme.c} opacity=".8" />
+      <circle cx="90" cy="290" r="3" fill={theme.c} opacity=".5" />
+      <circle cx="110" cy="290" r="3" fill={theme.c} opacity=".3" />
+      <rect x="36" y="307" width="126" height="3" rx="1.5" fill={theme.c} opacity=".55" />
+      <rect x="36" y="317" width="76" height="3" rx="1.5" fill={theme.c} opacity=".25" />
+      <text x="36" y="344" fill="#ffffff" opacity=".72" font-size="10" letter-spacing="3" font-family="Arial, sans-serif">GAMEINSIDER  /  {kind.toUpperCase()}</text>
     </svg>
   )
 }
+
+<style>
+  .thumb-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .thumb-art {
+    background: #111827;
+  }
+</style>

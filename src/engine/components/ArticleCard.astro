@@ -25,7 +25,7 @@ const label = section.split('-').map((w) => w[0].toUpperCase() + w.slice(1)).joi
 
 <a class="card" href={path} aria-label={d.title}>
   <div class="card-thumb">
-    <ArticleThumb category={d.category} title={d.title} cover={d.cover} eager={eager} />
+    <ArticleThumb category={d.category} title={d.title} thumbnailTheme={d.thumbnailTheme} cover={d.cover} eager={eager} />
   </div>
   <div class="card-body">
     <span class="card-meta">
