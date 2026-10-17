@@ -31,5 +31,5 @@ export const gameatlas: SiteConfig = {
     enabled: false,
     positions: { header: false, inContent: false, sidebar: false, footer: false },
   },
-  analytics: {},
+  analytics: { googleAnalyticsId: 'G-TB63KEVB10' },
 };
