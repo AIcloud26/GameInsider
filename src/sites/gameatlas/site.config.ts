@@ -22,9 +22,9 @@ export const gameatlas: SiteConfig = {
   showMultiGameNavigation: true,
   seo: {
     defaultTitle:
-      'GameInsider — Kingshot Guides, Gift Codes, Tier Lists & Strategies',
+      'GameInsider — Kingshot Guides, Heroes, Tier Lists & Strategies',
     defaultDescription:
-      'Trusted Kingshot guides, redeem codes, hero tier lists, formations and event strategies for mobile players. Mobile-first and kept up to date.',
+      'Kingshot guides covering heroes, tier lists, formations, events and practical strategies for mobile players.',
     titleTemplate: '%s | GameInsider',
   },
   ads: {

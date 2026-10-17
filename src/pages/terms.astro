@@ -1,33 +1,41 @@
 ---
 import { withBase } from '@/engine/routing/paths';
 import BaseLayout from '@/engine/layouts/BaseLayout.astro';
-const title = 'Terms of Service';
-const description = 'The terms that govern your use of GameInsider.';
-const updated = 'October 9, 2026';
+
+const title = 'Terms of Use';
+const description = 'Terms for using GameInsider and its gaming guides.';
+const updated = 'October 17, 2026';
 ---
 
 <BaseLayout title={`${title} | GameInsider`} description={description} path="/terms/">
   <div class="container section legal">
-    <h1>Terms of Service</h1>
+    <h1>Terms of Use</h1>
     <p class="muted">Last updated: {updated}</p>
-    <p>By accessing GameInsider, you agree to these terms. This is a template and should be reviewed by a qualified professional.</p>
 
-    <h2>Use of the site</h2>
-    <p>You may use the site for personal, non-commercial informational purposes. You agree not to misuse the site or attempt to disrupt its operation.</p>
+    <p>These terms apply when you visit GameInsider. By using the site, you agree to use its content and features lawfully and responsibly. If you do not agree, please stop using the site.</p>
 
-    <h2>Content</h2>
-    <p>Guides are provided "as is" for general information and may change as games are updated. We do not guarantee that codes remain active or that strategies suit every situation.</p>
+    <h2>What GameInsider provides</h2>
+    <p>GameInsider publishes gaming guides, strategy articles, hero information, event advice and code listings. The site is an independent information resource, not an official game service. Our content is intended to help readers make informed decisions, but it may not cover every account, region, game version or play style.</p>
+
+    <h2>Accuracy and updates</h2>
+    <p>Games change. Features, balance changes and event schedules may become outdated after an update or without notice. We make reasonable efforts to improve our pages, but cannot guarantee that every detail is complete, current or applicable to every player. Check the game itself and official publisher announcements for time-sensitive information.</p>
+
+    <h2>Acceptable use</h2>
+    <p>You may read and share links to our public pages for lawful purposes. Do not attempt to disrupt the site, bypass security controls, misuse contact forms or reproduce substantial portions of our content without permission.</p>
 
     <h2>Intellectual property</h2>
-    <p>Game names, logos and related trademarks belong to their respective owners, including Century Games for Kingshot. GameInsider claims no ownership of third-party marks.</p>
+    <p>Unless stated otherwise, GameInsider's original text and site design belong to their respective rights holders. Game titles, logos, characters and other third-party materials belong to their owners. References to Kingshot and Century Games do not imply sponsorship, endorsement or affiliation.</p>
 
     <h2>Third-party links</h2>
-    <p>The site may contain links to external websites. We are not responsible for their content or availability.</p>
+    <p>Some pages link to external websites for additional information. We do not control those sites and are not responsible for their content, availability or policies. Visiting an external site is your decision.</p>
 
-    <h2>Limitation of liability</h2>
-    <p>To the fullest extent permitted by law, GameInsider is not liable for any damages arising from your use of the site.</p>
+    <h2>Disclaimer and liability</h2>
+    <p>The site is provided on an informational basis and to the extent permitted by applicable law. Nothing here excludes a right or liability that cannot legally be excluded. To the extent permitted by law, we make no guarantee that the site will always be available or free from errors, and we are not responsible for losses arising from reliance on information that has changed or could not be confirmed.</p>
+
+    <h2>Changes to these terms</h2>
+    <p>We may revise these terms as the site develops. The latest revision date appears at the top of this page.</p>
 
     <h2>Contact</h2>
-    <p>Questions about these terms can be sent via our <a href={withBase('/contact/')}>contact page</a>.</p>
+    <p>Questions about these terms can be sent through our <a href={withBase('/contact/')}>contact page</a>.</p>
   </div>
 </BaseLayout>

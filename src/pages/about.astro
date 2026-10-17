@@ -1,27 +1,31 @@
 ---
 import { withBase } from '@/engine/routing/paths';
 import BaseLayout from '@/engine/layouts/BaseLayout.astro';
+
 const title = 'About GameInsider';
-const description =
-  'GameInsider publishes clear, mobile-first English guides, codes and tier lists for popular mobile games.';
+const description = 'Independent mobile game guides, strategy advice and updates for players.';
 ---
 
 <BaseLayout title={`${title} | GameInsider`} description={description} path="/about/">
   <div class="container section legal">
     <h1>About GameInsider</h1>
-    <p>GameInsider is an independent publisher of mobile game guides. Our goal is simple: help players progress faster with clear, accurate and mobile-friendly walkthroughs, redeem codes, hero rankings and event advice.</p>
 
-    <h2>How we work</h2>
+    <p>GameInsider publishes practical guides for mobile games, with a current focus on Kingshot. We cover the questions players face as they progress: which upgrades to prioritise, how heroes fit different modes, how events work and how to build effective teams.</p>
+
+    <h2>What you will find here</h2>
     <ul>
-      <li>We focus on the information players actually search for: getting started, codes, heroes, tier lists and events.</li>
-      <li>Guides are updated as the game changes. Anything we cannot confirm is clearly marked as pending verification rather than presented as fact.</li>
-      <li>We keep pages fast and readable on phones, with no account required.</li>
+      <li><strong>Guides:</strong> progression advice, resource priorities and battle formations.</li>
+      <li><strong>Heroes and tier lists:</strong> role explanations, comparisons and recommendations for different stages of play.</li>
     </ul>
 
-    <h2>Editorial independence</h2>
-    <p>GameInsider is not affiliated with, endorsed by or sponsored by the publishers of the games we cover. All game names, logos and trademarks are the property of their respective owners. We currently cover Kingshot by Century Games, with more games coming soon.</p>
+    <h2>How we prepare our guides</h2>
+    <p>We organise information around practical player questions and consult available game information and relevant public sources. Recommendations can differ by game mode, account progression and update, so we aim to explain the context behind them rather than present every ranking as universal.</p>
+    <p>Time-sensitive details, including game mechanics and event schedules, can change quickly. Readers should check the game or official publisher channels when a decision depends on the latest information. If you spot an error or outdated detail, please let us know so it can be reviewed.</p>
 
-    <h2>Contact</h2>
-    <p>Found an error or want to suggest a game? Visit our <a href={withBase('/contact/')}>contact page</a>.</p>
+    <h2>Independent publication</h2>
+    <p>GameInsider is an independent gaming information website. It is not affiliated with, endorsed by or sponsored by Century Games or the publishers of the other games discussed here. Game titles, logos and trademarks belong to their respective owners.</p>
+
+    <h2>Corrections and suggestions</h2>
+    <p>Useful corrections help keep guides accurate. If you notice a problem, want to suggest a topic or have a question about the site, visit our <a href={withBase('/contact/')}>contact page</a>.</p>
   </div>
 </BaseLayout>

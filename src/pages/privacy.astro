@@ -1,43 +1,50 @@
 ---
 import { withBase } from '@/engine/routing/paths';
 import BaseLayout from '@/engine/layouts/BaseLayout.astro';
+
 const title = 'Privacy Policy';
-const description = 'How GameInsider collects, uses and protects visitor information.';
-const updated = 'October 9, 2026';
+const description = 'Learn how GameInsider handles information, cookies and third-party services.';
+const updated = 'October 17, 2026';
 ---
 
 <BaseLayout title={`${title} | GameInsider`} description={description} path="/privacy/">
   <div class="container section legal">
     <h1>Privacy Policy</h1>
     <p class="muted">Last updated: {updated}</p>
-    <p>This Privacy Policy explains how GameInsider ("we", "us") handles information when you visit this website. This is a template policy and should be reviewed by a qualified professional before relying on it.</p>
 
-    <h2>1. Information we collect</h2>
-    <p>We do not require you to create an account. We may collect limited technical information automatically, such as browser type, device type, pages visited and referring pages, through analytics services if enabled.</p>
+    <p>GameInsider is a gaming information website. This policy explains what information may be handled when you browse our pages or contact us.</p>
 
-    <h2>2. Cookies</h2>
-    <p>We and our service providers may use cookies and similar technologies to understand site usage and, where enabled, to serve and measure advertising. You can control cookies through your browser settings. See our <a href={withBase('/cookie-policy/')}>Cookie Policy</a>.</p>
+    <h2>Information you provide</h2>
+    <p>You can read the site without creating an account. If you contact us, we may receive the name, email address and message you choose to submit. We use that information to respond to your enquiry and address reported errors.</p>
 
-    <h2>3. How we use information</h2>
+    <h2>Technical information</h2>
+    <p>Our hosting provider may process technical information needed to deliver and protect the website, such as IP addresses, request details, browser information and server logs. The information available depends on the services in use and their configuration.</p>
+
+    <h2>Analytics and advertising</h2>
+    <p>If analytics tools are enabled, they may use cookies or similar technologies to measure visits and understand how readers use the site. If advertising is enabled, GameInsider and its advertising partners may process information about browser activity, cookies and ad interactions to deliver, measure and, where permitted, personalise advertising.</p>
+    <p>Third-party services operate under their own privacy policies. Their data practices depend on the services enabled, your settings and applicable law. We do not claim that every third-party service uses the same data practices.</p>
+
+    <h2>Cookies and choices</h2>
+    <p>Cookies and similar technologies may be used for essential site functions, analytics or advertising where those services are active. You can manage cookies through your browser settings. Where required, additional consent choices will be provided. See our <a href={withBase('/cookie-policy/')}>Cookie Policy</a>.</p>
+
+    <h2>How information is used</h2>
     <ul>
-      <li>To operate and improve the website and its content.</li>
-      <li>To understand aggregate usage trends.</li>
-      <li>To display and measure advertising where configured.</li>
+      <li>To operate, maintain and protect the website.</li>
+      <li>To respond to messages and investigate reported errors.</li>
+      <li>To understand site usage when analytics is enabled.</li>
+      <li>To deliver and measure advertising when advertising services are enabled.</li>
     </ul>
 
-    <h2>4. Advertising</h2>
-    <p>Third-party advertising partners may use cookies to serve relevant ads and measure their performance. We do not share personally identifying information with advertisers. Advertising can be managed through industry opt-out tools and your device settings.</p>
+    <h2>External websites</h2>
+    <p>Our guides may link to game publishers, app stores and other third-party websites. Once you leave GameInsider, the destination site's privacy policy and terms apply.</p>
 
-    <h2>5. Third-party links</h2>
-    <p>Our pages may link to third-party websites, such as official app stores. We are not responsible for the privacy practices of those sites.</p>
+    <h2>Children's privacy</h2>
+    <p>GameInsider is intended for a general audience and is not directed at children under 13. We do not knowingly seek personal information from children under 13. If you believe a child has submitted personal information to us, contact us so we can review the matter.</p>
 
-    <h2>6. Children</h2>
-    <p>The website is intended for a general audience and is not directed at children under 13. We do not knowingly collect personal information from children under 13.</p>
+    <h2>Changes to this policy</h2>
+    <p>We may update this policy when our website, services or legal obligations change. The date at the top indicates the latest revision.</p>
 
-    <h2>7. Changes</h2>
-    <p>We may update this policy from time to time. Material changes will be reflected by the "last updated" date.</p>
-
-    <h2>8. Contact</h2>
-    <p>Questions about this policy can be sent via our <a href={withBase('/contact/')}>contact page</a>.</p>
+    <h2>Contact</h2>
+    <p>For privacy questions or requests concerning information you have submitted, please use our <a href={withBase('/contact/')}>contact page</a>.</p>
   </div>
 </BaseLayout>

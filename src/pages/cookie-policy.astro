@@ -1,9 +1,10 @@
 ---
 import { withBase } from '@/engine/routing/paths';
 import BaseLayout from '@/engine/layouts/BaseLayout.astro';
+
 const title = 'Cookie Policy';
-const description = 'How GameInsider uses cookies and similar technologies.';
-const updated = 'October 9, 2026';
+const description = 'How cookies and similar technologies may be used on GameInsider.';
+const updated = 'October 17, 2026';
 ---
 
 <BaseLayout title={`${title} | GameInsider`} description={description} path="/cookie-policy/">
@@ -11,20 +12,28 @@ const updated = 'October 9, 2026';
     <h1>Cookie Policy</h1>
     <p class="muted">Last updated: {updated}</p>
 
-    <h2>What cookies are</h2>
-    <p>Cookies are small text files stored on your device that help websites remember preferences and understand how the site is used.</p>
+    <p>This page explains how cookies and similar technologies may be used when you visit GameInsider. The cookies present on your device depend on which website features and third-party services are active.</p>
 
-    <h2>How we use them</h2>
+    <h2>What cookies do</h2>
+    <p>Cookies are small files stored by a website or service in your browser. Similar technologies can help services remember settings, understand site activity or measure advertising.</p>
+
+    <h2>Types of cookies</h2>
     <ul>
-      <li><strong>Essential:</strong> required for the site to function.</li>
-      <li><strong>Analytics:</strong> help us understand usage when analytics is enabled.</li>
-      <li><strong>Advertising:</strong> used by ad partners to serve and measure ads when advertising is enabled.</li>
+      <li><strong>Essential technologies:</strong> support core website delivery, security or functions you request.</li>
+      <li><strong>Analytics:</strong> when enabled, help us understand traffic and how readers use the site.</li>
+      <li><strong>Advertising:</strong> when advertising services are enabled, may help deliver ads, limit repeated displays and measure ad performance. Depending on your settings and applicable consent, advertising partners may also use information to personalise ads.</li>
     </ul>
 
-    <h2>Your choices</h2>
-    <p>Most browsers let you block or delete cookies. Disabling them may affect some site features. You can also use available industry opt-out tools for personalised advertising.</p>
+    <h2>Managing your choices</h2>
+    <p>You can block or delete cookies through your browser settings. Some site functions may not work as intended if certain cookies are blocked. Where applicable law requires consent for non-essential cookies or advertising technologies, the relevant consent mechanism should be used before those technologies are activated.</p>
+
+    <h2>Third-party services</h2>
+    <p>Analytics and advertising providers may use their own technologies under their own policies. The providers involved depend on the services enabled on the site. Please review the relevant provider's information for details about its practices and available controls.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>We may update this page when our use of cookies or third-party services changes. The latest revision date appears at the top.</p>
 
     <h2>Contact</h2>
-    <p>Questions about cookies can be sent via our <a href={withBase('/contact/')}>contact page</a>.</p>
+    <p>For questions about this policy, please use our <a href={withBase('/contact/')}>contact page</a>.</p>
   </div>
 </BaseLayout>

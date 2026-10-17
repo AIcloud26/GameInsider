@@ -14,7 +14,7 @@ export const kingshot: GameConfig = {
   shortName: 'Kingshot',
   tagline: 'Rebuild the kingdom, recruit heroes, survive the chaos',
   description:
-    'Kingshot guides, redeem codes, heroes, tier lists and strategies for the medieval 4X strategy game by Century Games.',
+    'Kingshot guides, hero analysis, tier lists, team formations and strategy advice for the medieval 4X strategy game by Century Games.',
   publisher: 'Century Games PTE. LTD.',
   developer: 'Century Games',
   releaseDate: '2025-02-22',
@@ -35,7 +35,6 @@ export const kingshot: GameConfig = {
     headerStyle: 'gaming',
   },
   features: {
-    codes: true,
     tierList: true,
     heroes: true,
     events: true,
@@ -47,7 +46,6 @@ export const kingshot: GameConfig = {
   navigation: [
     { to: '', label: 'Home' },
     { to: 'guides', label: 'Guides' },
-    { to: 'codes', label: 'Codes', feature: 'codes' },
     { to: 'heroes', label: 'Heroes', feature: 'heroes' },
     { to: 'tier-list', label: 'Tier List', feature: 'tierList' },
     { to: 'events', label: 'Events', feature: 'events' },
@@ -58,12 +56,6 @@ export const kingshot: GameConfig = {
       label: 'Guides',
       feature: 'builds',
       description: 'Beginner walkthroughs, formations, progression and strategy.',
-    },
-    {
-      slug: 'codes',
-      label: 'Codes',
-      feature: 'codes',
-      description: 'Active gift codes and how to redeem them in game.',
     },
     {
       slug: 'heroes',

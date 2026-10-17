@@ -9,8 +9,7 @@ author: "GameInsider Editorial"
 featured: false
 popular: false
 verified: false
-sources:
-  - "https://v2.kingshot.net/gift-codes"
+sources: []
 faq:
   - q: "Should free-to-play players focus on events?"
     a: "Yes — limited-time events are often the most efficient way to gain upgrade materials and rare rewards without spending."
@@ -29,14 +28,11 @@ While details vary, Kingshot events typically ask you to:
 - Log in daily for cumulative rewards.
 - Complete themed tasks such as upgrading buildings, winning battles or spending resources.
 - Exchange event currency for items in a dedicated event shop.
-- Redeem seasonal **gift codes** released around holidays and milestones.
-
 ## How to prioritise
 
 1. **Read the reward list first** and target the items hardest to obtain normally — hero fragments, high-tier upgrade materials and keys.
 2. **Plan around deadlines.** Save relevant tasks or resources shortly before an event if you can.
 3. **Claim daily login rewards** even on busy days; they are often the cheapest progress.
-4. **Redeem event codes promptly** before they expire — see the [codes page](/games/kingshot/codes/).
 
 ## Spending caution
 
