@@ -25,6 +25,8 @@ faq:
     a: "Consider its capacity and your expected combat activity. If wounded troops may exceed available capacity, improving protection can be more valuable than an unrelated upgrade."
   - q: "Should free-to-play players follow a different upgrade order?"
     a: "The basic priorities are similar, but players with limited resources should be more selective about optional upgrades and preserve resources for important progression requirements."
+cover: "/images/kingshot/guides/building-upgrade-priority.svg"
+thumbnailTheme: building
 ---
 
 # Kingshot Building Upgrade Priority Guide: What to Upgrade First

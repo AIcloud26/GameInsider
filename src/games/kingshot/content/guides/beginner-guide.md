@@ -22,6 +22,8 @@ faq:
     a: "It is usually more practical to develop a manageable core roster before spreading scarce materials across every available hero."
   - q: "Can you play Kingshot without spending money?"
     a: "You can approach progression without purchases, but the pace and available options may differ. Set a resource budget that suits your preferences and avoid spending under pressure."
+cover: "/images/kingshot/guides/beginner-guide.svg"
+thumbnailTheme: guide
 ---
 
 # Kingshot Beginner Guide: Progression, Resources, and Early Priorities

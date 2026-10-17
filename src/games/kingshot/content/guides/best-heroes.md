@@ -23,6 +23,8 @@ faq:
     a: "Usually, it is more efficient to develop a manageable core roster before spending scarce materials across many heroes. The right number depends on the activities you play."
   - q: "Are newer-generation heroes always better?"
     a: "Not automatically. Compare actual skills, investment requirements, role coverage, and performance in your chosen activity instead of relying on generation alone."
+cover: "/images/kingshot/guides/best-heroes.svg"
+thumbnailTheme: heroes
 ---
 
 # Kingshot Best Heroes Guide: Who to Upgrade First

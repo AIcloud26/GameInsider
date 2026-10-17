@@ -23,6 +23,8 @@ faq:
     a: "Not automatically. Compare their actual abilities, acquisition and development costs, and how well they fit your roster."
   - q: "Where can I find a hero ranking?"
     a: "Our Kingshot hero tier list provides a source-attributed ranking snapshot. Check its date and use it as a reference rather than a guaranteed result for every account."
+cover: "/images/kingshot/guides/hero-list.svg"
+thumbnailTheme: heroes
 ---
 
 # Kingshot Heroes List: Classes, Roles, and Upgrade Basics

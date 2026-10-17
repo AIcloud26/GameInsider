@@ -23,6 +23,8 @@ faq:
     a: "Not necessarily. A strong individual hero may not solve your team's weaknesses. Consider role coverage, development level, and the requirements of the activity."
   - q: "Should I use the same formation for every mode?"
     a: "Review each activity's rules and test adjustments when possible. A lineup that performs well in one situation may not be ideal in another."
+cover: "/images/kingshot/guides/best-formation.svg"
+thumbnailTheme: formation
 ---
 
 # Kingshot Best Formation Guide: Build a Balanced Team

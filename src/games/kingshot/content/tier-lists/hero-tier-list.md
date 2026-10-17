@@ -23,6 +23,8 @@ faq:
     a: "Not automatically. Consider the hero's role, current investment, skill levels, availability of upgrade materials, and the game mode you want to improve."
   - q: "Can older heroes still be useful?"
     a: "Yes. An older hero may remain useful when well developed or when its skills fill a specific role in your formation. Compare actual performance instead of relying on generation alone."
+cover: "/images/kingshot/guides/hero-tier-list.svg"
+thumbnailTheme: tiers
 ---
 
 # Kingshot Hero Tier List: How to Choose the Right Heroes

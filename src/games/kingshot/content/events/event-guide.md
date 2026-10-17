@@ -21,6 +21,8 @@ faq:
     a: "Yes. Focus on achievable rewards and activities that fit your normal progression instead of spending premium currency just to compete."
   - q: "Where can I find the current event schedule?"
     a: "Check the in-game event centre for the schedule, rules, rewards, and deadlines that apply to your account."
+cover: "/images/kingshot/guides/event-guide.svg"
+thumbnailTheme: events
 ---
 
 # Kingshot Events Guide: Plan Before You Spend
