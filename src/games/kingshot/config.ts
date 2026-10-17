@@ -35,6 +35,7 @@ export const kingshot: GameConfig = {
     headerStyle: 'gaming',
   },
   features: {
+    codes: false,
     tierList: true,
     heroes: true,
     events: true,
