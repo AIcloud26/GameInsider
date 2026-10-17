@@ -9,23 +9,36 @@ const description = 'Get in touch with the GameInsider team about corrections, f
     <h1>Contact Us</h1>
     <p class="muted">Questions, corrections or game requests are welcome. We read every message, though reply times may vary.</p>
 
-    {/* Front-end only: the form action/backend must be configured before launch
-        (e.g. a form service). It does not send mail on its own. */}
-    <form class="contact-form" id="contact-form">
+    <form
+      class="contact-form"
+      id="contact-form"
+      action="https://formsubmit.co/info@gameinsider.space"
+      method="POST"
+    >
+      <input type="hidden" name="_subject" value="[GameInsider] New contact form message" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="true" />
+      <input type="text" name="_honey" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
       <label>Name
-        <input type="text" name="name" required />
+        <input type="text" name="name" maxlength="100" autocomplete="name" required />
       </label>
+
       <label>Email
-        <input type="email" name="email" required />
+        <input type="email" name="email" maxlength="254" autocomplete="email" required />
       </label>
+
       <label>Subject
-        <input type="text" name="subject" required />
+        <input type="text" name="subject" maxlength="150" required />
       </label>
+
       <label>Message
-        <textarea name="message" rows="6" required></textarea>
+        <textarea name="message" rows="6" maxlength="10000" required></textarea>
       </label>
-      <button class="btn btn-primary" type="submit">Send message</button>
-      <p id="form-note" class="muted"></p>
+
+      <button class="btn btn-primary" id="submit-button" type="submit">Send message</button>
+      <p id="form-note" class="muted" role="status" aria-live="polite"></p>
+      <p class="muted">Your message will be processed by our contact form service and forwarded to our team.</p>
     </form>
   </div>
 </BaseLayout>
@@ -34,15 +47,23 @@ const description = 'Get in touch with the GameInsider team about corrections, f
   .legal { max-width:720px; }
   .contact-form { display:grid; gap:14px; margin-top:10px; }
   label { display:grid; gap:6px; font-weight:600; font-size:.92rem; }
-  input, textarea { padding:10px 12px; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--surface); color:var(--text); font:inherit; }
+  input, textarea {
+    width:100%;
+    box-sizing:border-box;
+    padding:10px 12px;
+    border-radius:var(--radius-sm);
+    border:1px solid var(--border);
+    background:var(--surface);
+    color:var(--text);
+    font:inherit;
+  }
   .contact-form .btn { justify-self:start; }
+  .honeypot {
+    position:absolute;
+    left:-10000px;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+  }
+  #form-note:empty { display:none; }
 </style>
-
-<script>
-  const form = document.getElementById('contact-form') as HTMLFormElement;
-  const note = document.getElementById('form-note') as HTMLParagraphElement;
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    note.textContent = 'This contact form is not connected yet. Please configure a form endpoint before launch.';
-  });
-</script>
